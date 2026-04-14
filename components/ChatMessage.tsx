@@ -45,9 +45,9 @@ export default function ChatMessage({ role, content }: ChatMessageProps) {
         }`}
       >
         {isUser ? (
-          <p className="text-base leading-relaxed whitespace-pre-wrap">{content}</p>
+          <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap">{content}</p>
         ) : (
-          <div className="message-content text-base leading-relaxed">
+          <div className="message-content text-sm sm:text-base leading-relaxed">
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>{renderWithSwatches(content)}</ReactMarkdown>
           </div>
         )}

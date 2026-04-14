@@ -109,9 +109,9 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen">
       {/* Header */}
-      <header className="bg-crown-charcoal border-b border-crown-charcoal-light px-4 py-5 shadow-md">
+      <header className="bg-crown-charcoal border-b border-crown-charcoal-light px-4 py-2 sm:py-5 shadow-md">
         <div className="max-w-4xl mx-auto flex items-center gap-3">
-          <h1 className="text-white font-bold text-2xl tracking-tight">
+          <h1 className="text-white font-bold text-base sm:text-2xl tracking-tight">
             Crown AI
           </h1>
           <div className="ml-auto flex items-center gap-2">
@@ -123,16 +123,16 @@ export default function Home() {
 
       {/* Chat area */}
       <main className="flex-1 overflow-y-auto chat-scroll chat-bg">
-        <div className="max-w-4xl mx-auto px-4 py-6">
+        <div className="max-w-4xl mx-auto px-4 py-3 sm:py-6">
           {!hasMessages ? (
             /* Welcome screen */
-            <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6">
-              <div className="flex flex-col items-center gap-3">
-                <CrownLogo size={157} />
-                <h2 className="text-2xl font-semibold text-crown-charcoal">
+            <div className="flex flex-col items-center justify-center min-h-0 sm:min-h-[60vh] gap-3 sm:gap-6">
+              <div className="flex flex-col items-center gap-2 sm:gap-3">
+                <CrownLogo size={157} className="w-[70px] sm:w-[157px] h-auto" />
+                <h2 className="text-xl sm:text-2xl font-semibold text-crown-charcoal">
                   Welcome to Crown AI
                 </h2>
-                <p className="text-gray-500 text-center max-w-md">
+                <p className="text-sm sm:text-base text-gray-500 text-center max-w-md">
                   Your intelligent product assistant. Ask me about building
                   supplies, pricing, specs, colors, and availability across all
                   Crown locations.
@@ -157,9 +157,9 @@ export default function Home() {
       </main>
 
       {/* Input area */}
-      <footer className="border-t border-gray-200 bg-white px-4 py-3">
+      <footer className="border-t border-gray-200 bg-white px-3 py-2 sm:px-4 sm:py-3">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-end gap-3 input-glow rounded-xl border border-gray-200 bg-gray-50 px-4 py-2 transition-all">
+          <div className="flex items-end gap-2 sm:gap-3 input-glow rounded-xl border border-gray-200 bg-gray-50 px-3 sm:px-4 py-1.5 sm:py-2 transition-all">
             <textarea
               ref={inputRef}
               value={input}
