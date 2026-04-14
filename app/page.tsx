@@ -107,11 +107,11 @@ export default function Home() {
   const hasMessages = messages.length > 0;
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-dvh">
       {/* Header */}
       <header className="bg-crown-charcoal border-b border-crown-charcoal-light px-4 py-2 sm:py-5 shadow-md">
         <div className="max-w-4xl mx-auto flex items-center gap-3">
-          <h1 className="text-white font-bold text-base sm:text-2xl tracking-tight">
+          <h1 className="text-white font-bold text-lg sm:text-2xl tracking-tight">
             Crown AI
           </h1>
           <div className="ml-auto flex items-center gap-2">
@@ -126,9 +126,9 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 py-3 sm:py-6">
           {!hasMessages ? (
             /* Welcome screen */
-            <div className="flex flex-col items-center justify-center min-h-0 sm:min-h-[60vh] gap-3 sm:gap-6">
+            <div className="flex flex-col items-center justify-center min-h-0 sm:min-h-[60vh] gap-4 sm:gap-6">
               <div className="flex flex-col items-center gap-2 sm:gap-3">
-                <CrownLogo size={157} className="w-[70px] sm:w-[157px] h-auto" />
+                <CrownLogo size={157} className="w-[105px] sm:w-[157px] h-auto" />
                 <h2 className="text-xl sm:text-2xl font-semibold text-crown-charcoal">
                   Welcome to Crown AI
                 </h2>
