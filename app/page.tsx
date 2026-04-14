@@ -15,11 +15,14 @@ export default function Home() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
+  // Scroll the chat container (not the document) to the bottom
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (mainRef.current) {
+      mainRef.current.scrollTop = mainRef.current.scrollHeight;
+    }
   }, [messages, isLoading]);
 
   // Auto-resize textarea
@@ -104,13 +107,31 @@ export default function Home() {
     }
   }
 
+  function clearChat() {
+    setMessages([]);
+    setInput("");
+  }
+
   const hasMessages = messages.length > 0;
 
   return (
     <div className="flex flex-col h-dvh">
       {/* Header */}
-      <header className="bg-crown-charcoal border-b border-crown-charcoal-light px-4 py-2 sm:py-5 shadow-md">
+      <header className="bg-crown-charcoal border-b border-crown-charcoal-light px-4 py-2 sm:py-5 shadow-md flex-shrink-0">
         <div className="max-w-4xl mx-auto flex items-center gap-3">
+          {hasMessages && (
+            <button
+              onClick={clearChat}
+              className="flex items-center justify-center w-7 h-7 rounded-md
+                         text-gray-400 hover:text-white hover:bg-white/10
+                         transition-colors flex-shrink-0"
+              aria-label="New chat"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 12H5M12 5l-7 7 7 7"/>
+              </svg>
+            </button>
+          )}
           <h1 className="text-white font-bold text-lg sm:text-2xl tracking-tight">
             Crown AI
           </h1>
@@ -122,7 +143,7 @@ export default function Home() {
       </header>
 
       {/* Chat area */}
-      <main className="flex-1 overflow-y-auto chat-scroll chat-bg">
+      <main ref={mainRef} className="flex-1 overflow-y-auto chat-scroll chat-bg">
         <div className="max-w-4xl mx-auto px-4 py-3 sm:py-6">
           {!hasMessages ? (
             /* Welcome screen */
@@ -151,14 +172,13 @@ export default function Home() {
                 messages[messages.length - 1]?.role === "user" && (
                   <TypingIndicator />
                 )}
-              <div ref={chatEndRef} />
             </div>
           )}
         </div>
       </main>
 
       {/* Input area */}
-      <footer className="border-t border-gray-200 bg-white px-3 py-2 sm:px-4 sm:py-3">
+      <footer className="border-t border-gray-200 bg-white px-3 py-2 sm:px-4 sm:py-3 flex-shrink-0">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-end gap-2 sm:gap-3 input-glow rounded-xl border border-crown-gold/30 bg-white shadow-sm px-3 sm:px-4 py-1.5 sm:py-2 transition-all">
             <textarea
