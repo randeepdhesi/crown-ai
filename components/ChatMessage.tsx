@@ -48,7 +48,18 @@ export default function ChatMessage({ role, content }: ChatMessageProps) {
           <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap">{content}</p>
         ) : (
           <div className="message-content text-sm sm:text-base leading-relaxed">
-            <ReactMarkdown rehypePlugins={[rehypeRaw]}>{renderWithSwatches(content)}</ReactMarkdown>
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                table: ({ children }) => (
+                  <div className="table-wrapper">
+                    <table>{children}</table>
+                  </div>
+                ),
+              }}
+            >
+              {renderWithSwatches(content)}
+            </ReactMarkdown>
           </div>
         )}
       </div>
