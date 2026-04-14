@@ -114,9 +114,9 @@ export default function Home() {
           <h1 className="text-white font-bold text-lg sm:text-2xl tracking-tight">
             Crown AI
           </h1>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-1.5">
             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-gray-400 text-xs">Online</span>
+            <span className="text-emerald-400 text-xs font-medium">Online</span>
           </div>
         </div>
       </header>
@@ -129,13 +129,14 @@ export default function Home() {
             <div className="flex flex-col items-center justify-center min-h-0 sm:min-h-[60vh] gap-4 sm:gap-6">
               <div className="flex flex-col items-center gap-2 sm:gap-3">
                 <CrownLogo size={157} className="w-[105px] sm:w-[157px] h-auto" />
-                <h2 className="text-xl sm:text-2xl font-semibold text-crown-charcoal">
+                <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-crown-gold">
+                  Crown Building Supplies
+                </p>
+                <h2 className="text-xl sm:text-2xl font-bold text-crown-charcoal">
                   Welcome to Crown AI
                 </h2>
-                <p className="text-sm sm:text-base text-gray-500 text-center max-w-md">
-                  Your intelligent product assistant. Ask me about building
-                  supplies, pricing, specs, colors, and availability across all
-                  Crown locations.
+                <p className="text-sm sm:text-base text-gray-500 text-center max-w-sm">
+                  Your intelligent product assistant for pricing, specs, colors, and availability.
                 </p>
               </div>
               <SuggestedQuestions onSelect={(q) => sendMessage(q)} />
@@ -159,7 +160,7 @@ export default function Home() {
       {/* Input area */}
       <footer className="border-t border-gray-200 bg-white px-3 py-2 sm:px-4 sm:py-3">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-end gap-2 sm:gap-3 input-glow rounded-xl border border-gray-200 bg-gray-50 px-3 sm:px-4 py-1.5 sm:py-2 transition-all">
+          <div className="flex items-end gap-2 sm:gap-3 input-glow rounded-xl border border-crown-gold/30 bg-white shadow-sm px-3 sm:px-4 py-1.5 sm:py-2 transition-all">
             <textarea
               ref={inputRef}
               value={input}
