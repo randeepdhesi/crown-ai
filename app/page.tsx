@@ -214,7 +214,7 @@ export default function Home() {
             </button>
           </div>
           <p className="text-[11px] text-gray-400 text-center mt-2">
-            Crown AI may make mistakes. Verify important product details with your branch.
+            Powered by Crown Building Supplies.
           </p>
         </div>
       </footer>
