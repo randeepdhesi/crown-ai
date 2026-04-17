@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div
       ref={mainRef}
-      className="overflow-y-auto chat-scroll h-[calc(100dvh-152px)]"
+      className={`chat-scroll h-[calc(100dvh-152px)] ${hasMessages ? "overflow-y-auto" : "overflow-hidden"}`}
     >
       <div className="max-w-2xl mx-auto px-4 py-3 sm:py-6">
         {!hasMessages ? (
