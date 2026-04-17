@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, SlidersHorizontal, Brain, Sparkles, User } from "lucide-react";
+import { ChevronRight, SlidersHorizontal, Brain, Sparkles, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function NewsPage() {
@@ -17,7 +17,7 @@ export default function NewsPage() {
             className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center transition-colors flex-shrink-0"
             aria-label="Go back"
           >
-            <ChevronLeft size={18} className="text-neutral-300" />
+            <ChevronRight size={18} className="text-neutral-300" />
           </button>
         </div>
 
