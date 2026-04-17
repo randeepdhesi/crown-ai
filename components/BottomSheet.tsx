@@ -48,7 +48,7 @@ export function BottomSheet({ isOpen, onClose, heightClass, children }: BottomSh
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "tween", duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-            className={`fixed bottom-0 left-0 right-0 ${heightClass} max-h-[calc(100dvh-3.5rem)] bg-neutral-900 rounded-t-2xl z-[70] flex flex-col`}
+            className={`fixed bottom-0 left-0 right-0 ${heightClass} max-h-[calc(100dvh-3.5rem)] bg-neutral-900 rounded-t-3xl z-[70] flex flex-col md:max-w-[400px] md:right-auto`}
           >
             {/* Drag handle — only this initiates the drag gesture */}
             <div
