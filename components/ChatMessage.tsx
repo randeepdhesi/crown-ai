@@ -1,9 +1,12 @@
 "use client";
 
+import type { RefObject } from "react";
 import type { Message, ToolInvocation } from "ai";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { Package } from "lucide-react";
+import { motion } from "framer-motion";
+import { useSmoothStream } from "@/hooks/useSmoothStream";
 
 function renderWithSwatches(content: string): string {
   return content.replace(/\[#([0-9a-fA-F]{6})\]/g, (_, hex) =>
@@ -22,12 +25,9 @@ interface Product {
 function ProductCard({ product }: { product: Product }) {
   return (
     <div className="flex items-center gap-3 bg-neutral-800 rounded-md border-l-[3px] border-crown-gold shadow-sm px-3 py-2.5">
-      {/* Square image placeholder */}
       <div className="flex-shrink-0 w-12 h-12 rounded bg-neutral-700 flex items-center justify-center">
         <Package size={20} className="text-neutral-400" />
       </div>
-
-      {/* Stacked product info */}
       <div className="flex-1 min-w-0">
         <p className="text-sm font-semibold text-white truncate">{product.name}</p>
         <p className="text-sm font-semibold text-crown-gold">${product.price.toFixed(2)} CAD</p>
@@ -42,8 +42,6 @@ function ProductCard({ product }: { product: Product }) {
           </span>
         </div>
       </div>
-
-      {/* Dummy action button — bottom right intent */}
       <button className="flex-shrink-0 text-xs font-medium text-crown-gold border border-crown-gold/40 rounded px-2.5 py-1.5 hover:bg-crown-gold/5 transition-colors whitespace-nowrap">
         View Specs
       </button>
@@ -74,13 +72,23 @@ function ToolResult({ invocation }: { invocation: ToolInvocation }) {
   );
 }
 
-export default function ChatMessage({ message }: { message: Message }) {
+interface ChatMessageProps {
+  message: Message;
+  isStreaming?: boolean;
+  scrollRef?: RefObject<HTMLDivElement>;
+}
+
+export default function ChatMessage({ message, isStreaming = false, scrollRef }: ChatMessageProps) {
   const isUser = message.role === "user";
+  const smoothContent = useSmoothStream(message.content, !isStreaming);
 
   if (!isUser && !message.content) return null;
 
   return (
-    <div className={`flex gap-3 animate-fade-in ${isUser ? "flex-row-reverse" : ""}`}>
+    <div
+      ref={scrollRef}
+      className={`flex gap-3 animate-fade-in ${isUser ? "flex-row-reverse" : ""}`}
+    >
       {/* Avatar */}
       <div className="flex-shrink-0 mt-1">
         {isUser ? (
@@ -98,7 +106,9 @@ export default function ChatMessage({ message }: { message: Message }) {
       </div>
 
       {/* Message bubble */}
-      <div
+      <motion.div
+        layout="size"
+        transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.5 }}
         className={`max-w-[90%] rounded-2xl px-5 py-4 ${
           isUser
             ? "bg-neutral-800 text-white rounded-tr-md"
@@ -111,7 +121,7 @@ export default function ChatMessage({ message }: { message: Message }) {
           </p>
         ) : (
           <div className="space-y-3">
-            {message.content && (
+            {smoothContent && (
               <div className="message-content text-sm sm:text-base leading-relaxed">
                 <ReactMarkdown
                   rehypePlugins={[rehypeRaw]}
@@ -123,13 +133,16 @@ export default function ChatMessage({ message }: { message: Message }) {
                     ),
                   }}
                 >
-                  {renderWithSwatches(message.content)}
+                  {renderWithSwatches(smoothContent)}
                 </ReactMarkdown>
               </div>
             )}
+            {message.toolInvocations?.map((inv) => (
+              <ToolResult key={inv.toolCallId} invocation={inv} />
+            ))}
           </div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -10,17 +10,33 @@ import CrownLogo from "@/components/CrownLogo";
 export default function Home() {
   const { messages, isLoading, append } = useChatContext();
   const mainRef = useRef<HTMLDivElement>(null);
+  const lastUserMsgRef = useRef<HTMLDivElement>(null);
+  const prevLastUserMsgIdRef = useRef<string | undefined>(undefined);
 
   const hasMessages = messages.length > 0;
   const showTypingIndicator =
     isLoading && messages[messages.length - 1]?.role === "user";
 
-  useEffect(() => {
-    if (mainRef.current) {
-      mainRef.current.scrollTop = mainRef.current.scrollHeight;
-    }
-  }, [messages, isLoading]);
+  const lastUserMsgId = messages.filter((m) => m.role === "user").at(-1)?.id;
+  const lastAssistantMsgId = messages.at(-1)?.role === "assistant"
+    ? messages.at(-1)?.id
+    : undefined;
 
+  // On new user message: scroll it to near the top of the viewport
+  useEffect(() => {
+    if (!lastUserMsgId || lastUserMsgId === prevLastUserMsgIdRef.current) return;
+    prevLastUserMsgIdRef.current = lastUserMsgId;
+
+    requestAnimationFrame(() => {
+      const el = lastUserMsgRef.current;
+      const container = mainRef.current;
+      if (!el || !container) return;
+      const top = el.offsetTop - container.offsetTop - 16;
+      container.scrollTo({ top, behavior: "smooth" });
+    });
+  }, [lastUserMsgId]);
+
+  // Reset scroll when conversation is cleared
   useEffect(() => {
     if (hasMessages) return;
     const reset = () => {
@@ -60,7 +76,12 @@ export default function Home() {
         ) : (
           <div className="space-y-4">
             {messages.map((msg) => (
-              <ChatMessage key={msg.id} message={msg} />
+              <ChatMessage
+                key={msg.id}
+                message={msg}
+                isStreaming={isLoading && msg.id === lastAssistantMsgId}
+                scrollRef={msg.id === lastUserMsgId ? lastUserMsgRef : undefined}
+              />
             ))}
             {showTypingIndicator && <TypingIndicator />}
           </div>
