@@ -70,67 +70,69 @@ export function FloatingInput() {
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 z-40">
         <div className="bg-neutral-800/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl">
           <form ref={formRef} onSubmit={handleSubmit}>
-            <div className="flex w-full items-center gap-3 px-3 py-2">
+            <div className="flex flex-col px-4 pt-3 pb-2 gap-2">
 
-              {/* Context pill */}
-              <div className="flex-shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setOpenSheet("catalog")}
-                  className="bg-neutral-700 hover:bg-neutral-600 text-neutral-300 text-xs rounded-full px-3 py-1 font-medium transition-colors"
-                >
-                  {selectedSource}
-                </button>
-              </div>
-
-              {/* Textarea */}
+              {/* Row 1: Textarea — full width, taller */}
               <textarea
                 ref={inputRef}
                 value={input}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 placeholder={placeholder}
-                rows={1}
-                className="flex-grow min-h-[40px] bg-transparent border-none outline-none resize-none text-base text-white placeholder:text-neutral-400 py-2"
+                rows={2}
+                className="w-full min-h-[60px] bg-transparent border-none outline-none resize-none text-base text-white placeholder:text-neutral-400 leading-relaxed"
                 disabled={isLoading}
               />
 
-              {/* Unified action button — circle */}
-              <motion.button
-                type="button"
-                onClick={handleActionClick}
-                disabled={!isListening && (isLoading || (!isSpeechSupported && !hasText))}
-                className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-colors disabled:cursor-not-allowed disabled:pointer-events-none ${buttonBg}`}
-                aria-label={
-                  hasText ? "Send message" : isListening ? "Stop listening" : "Start voice input"
-                }
-              >
-                {hasText ? (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="12" y1="19" x2="12" y2="5" />
-                    <polyline points="5 12 12 5 19 12" />
-                  </svg>
-                ) : isListening ? (
-                  <div className="flex items-end gap-[2px] h-4">
-                    {BAR_KEYFRAMES.map((frames, i) => (
-                      <motion.span
-                        key={i}
-                        className="w-[3px] rounded-full bg-black"
-                        animate={{ height: frames.map((h) => `${h}px`) }}
-                        transition={{ duration: 0.9, repeat: Infinity, ease: "easeInOut", delay: i * 0.12 }}
-                        style={{ height: `${frames[0]}px` }}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="9" y="2" width="6" height="12" rx="3" />
-                    <path d="M5 10a7 7 0 0 0 14 0" />
-                    <line x1="12" y1="19" x2="12" y2="22" />
-                    <line x1="9" y1="22" x2="15" y2="22" />
-                  </svg>
-                )}
-              </motion.button>
+              {/* Row 2: Context pill (left) + Action button (right) */}
+              <div className="flex items-center justify-between">
+                <div className="flex-shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setOpenSheet("catalog")}
+                    className="bg-neutral-700 hover:bg-neutral-600 text-neutral-300 text-xs rounded-full px-3 py-1 font-medium transition-colors"
+                  >
+                    {selectedSource}
+                  </button>
+                </div>
+
+                {/* Unified action button — circle */}
+                <motion.button
+                  type="button"
+                  onClick={handleActionClick}
+                  disabled={!isListening && (isLoading || (!isSpeechSupported && !hasText))}
+                  className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-colors disabled:cursor-not-allowed disabled:pointer-events-none ${buttonBg}`}
+                  aria-label={
+                    hasText ? "Send message" : isListening ? "Stop listening" : "Start voice input"
+                  }
+                >
+                  {hasText ? (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="19" x2="12" y2="5" />
+                      <polyline points="5 12 12 5 19 12" />
+                    </svg>
+                  ) : isListening ? (
+                    <div className="flex items-end gap-[2px] h-4">
+                      {BAR_KEYFRAMES.map((frames, i) => (
+                        <motion.span
+                          key={i}
+                          className="w-[3px] rounded-full bg-black"
+                          animate={{ height: frames.map((h) => `${h}px`) }}
+                          transition={{ duration: 0.9, repeat: Infinity, ease: "easeInOut", delay: i * 0.12 }}
+                          style={{ height: `${frames[0]}px` }}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="9" y="2" width="6" height="12" rx="3" />
+                      <path d="M5 10a7 7 0 0 0 14 0" />
+                      <line x1="12" y1="19" x2="12" y2="22" />
+                      <line x1="9" y1="22" x2="15" y2="22" />
+                    </svg>
+                  )}
+                </motion.button>
+              </div>
 
             </div>
           </form>

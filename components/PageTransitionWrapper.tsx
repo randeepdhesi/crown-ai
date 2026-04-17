@@ -12,13 +12,13 @@ type RouteVariants = {
 };
 
 function getVariants(pathname: string): RouteVariants {
-  // Chat and Catalog: instant swap, no animation
+  // Chat and Catalog: very quick fade so AnimatePresence completion fires correctly
   if (pathname === "/" || pathname === "/catalog") {
     return {
-      initial: { opacity: 1 },
+      initial: { opacity: 0 },
       animate: { opacity: 1 },
-      exit: { opacity: 1 },
-      transition: { duration: 0 },
+      exit: { opacity: 0 },
+      transition: { duration: 0.08 },
     };
   }
   // Profile: enters from left → slides right into view
