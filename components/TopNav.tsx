@@ -15,8 +15,8 @@ export function TopNav() {
   const isCatalogActive = pathname === "/catalog";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-neutral-950/80 backdrop-blur-sm border-b border-white/5">
-      <div className="flex items-center justify-between h-full w-full px-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-neutral-950/80 backdrop-blur-sm border-b border-white/5" style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
+      <div className="flex items-center justify-between h-14 w-full px-4">
         {/* Left: Profile nav or Settings toggle when on /profile */}
         <button
           onClick={() =>

@@ -6,6 +6,8 @@
   --crown-gold: #b3874b;
   --crown-gold-light: #c9a06a;
   --crown-charcoal: #1a1a1a;
+  /* Total header height = nav bar (3.5rem) + iOS safe area inset (Dynamic Island / notch) */
+  --header-h: calc(3.5rem + env(safe-area-inset-top, 0px));
 }
 
 body {

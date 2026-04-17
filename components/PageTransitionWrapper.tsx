@@ -27,7 +27,7 @@ export function PageTransitionWrapper({ children }: { children: ReactNode }) {
   return (
     <div className="relative w-full">
       {/* Permanent base layer — Chat/Catalog never unmount, zero animation */}
-      <div className="relative z-0 w-full pt-14 pb-32 min-h-dvh">
+      <div className="relative z-0 w-full pb-32 min-h-dvh" style={{ paddingTop: 'var(--header-h)' }}>
         {!isSlide ? children : null}
       </div>
 
@@ -54,7 +54,8 @@ export function PageTransitionWrapper({ children }: { children: ReactNode }) {
             initial={{ x: "-100%" }}
             animate={{ x: 0, transition: SPRING }}
             exit={{ x: "-100%", transition: SPRING }}
-            className="fixed top-14 left-0 z-40 h-[calc(100dvh-3.5rem)] w-full md:w-[400px] bg-neutral-900 border-r border-white/5 shadow-2xl overflow-y-auto md:rounded-tr-[2rem] md:rounded-br-[2rem]"
+            className="fixed left-0 z-40 w-full md:w-[400px] bg-neutral-900 border-r border-white/5 shadow-2xl overflow-y-auto md:rounded-tr-[2rem] md:rounded-br-[2rem]"
+            style={{ top: 'var(--header-h)', height: 'calc(100dvh - var(--header-h))' }}
           >
             <FrozenRoute>{children}</FrozenRoute>
           </motion.div>
@@ -69,7 +70,8 @@ export function PageTransitionWrapper({ children }: { children: ReactNode }) {
             initial={{ x: "100%" }}
             animate={{ x: 0, transition: SPRING }}
             exit={{ x: "100%", transition: SPRING }}
-            className="fixed top-14 right-0 z-40 h-[calc(100dvh-3.5rem)] w-full md:w-[400px] bg-neutral-900 border-l border-white/5 shadow-2xl overflow-y-auto md:rounded-tl-[2rem] md:rounded-bl-[2rem]"
+            className="fixed right-0 z-40 w-full md:w-[400px] bg-neutral-900 border-l border-white/5 shadow-2xl overflow-y-auto md:rounded-tl-[2rem] md:rounded-bl-[2rem]"
+            style={{ top: 'var(--header-h)', height: 'calc(100dvh - var(--header-h))' }}
           >
             <FrozenRoute>{children}</FrozenRoute>
           </motion.div>
