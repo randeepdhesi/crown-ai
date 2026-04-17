@@ -76,16 +76,12 @@ export function FloatingInput() {
                 type="button"
                 onClick={toggleListening}
                 disabled={isLoading}
-                animate={isListening ? { scale: [1, 1.12, 1] } : undefined}
-                transition={
-                  isListening
-                    ? { repeat: Infinity, duration: 0.9 }
-                    : undefined
-                }
+                animate={{ scale: isListening ? [1, 1.12, 1] : 1 }}
+                transition={{ repeat: isListening ? Infinity : 0, duration: 0.9 }}
                 className={`flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
                   isListening
                     ? "bg-red-500 hover:bg-red-600"
-                    : "bg-neutral-700 hover:bg-neutral-600 disabled:cursor-not-allowed"
+                    : "bg-neutral-700 hover:bg-neutral-600 disabled:cursor-not-allowed disabled:pointer-events-none"
                 }`}
                 aria-label={isListening ? "Stop recording" : "Start voice input"}
               >
@@ -116,11 +112,9 @@ export function FloatingInput() {
             <motion.button
               type="submit"
               disabled={!input.trim() || isLoading}
-              animate={isLoading ? { scale: [1, 1.12, 1] } : undefined}
-              transition={
-                isLoading ? { repeat: Infinity, duration: 0.9 } : undefined
-              }
-              className="flex-shrink-0 w-9 h-9 rounded-lg bg-crown-gold hover:bg-crown-gold-dark disabled:bg-neutral-700 disabled:cursor-not-allowed flex items-center justify-center transition-colors"
+              animate={{ scale: isLoading ? [1, 1.12, 1] : 1 }}
+              transition={{ repeat: isLoading ? Infinity : 0, duration: 0.9 }}
+              className="flex-shrink-0 w-9 h-9 rounded-lg bg-crown-gold hover:bg-crown-gold-dark disabled:bg-neutral-700 disabled:cursor-not-allowed disabled:pointer-events-none flex items-center justify-center transition-colors"
             >
               <svg
                 width="16"

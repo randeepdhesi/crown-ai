@@ -15,9 +15,7 @@ import type { Message } from "ai";
 interface ChatContextValue {
   messages: Message[];
   input: string;
-  handleInputChange: (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
+  handleInputChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   isLoading: boolean;
   append: (message: { role: "user"; content: string }) => void;
