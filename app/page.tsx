@@ -47,8 +47,8 @@ export default function Home() {
                 Welcome to Crown AI
               </h2>
               <p className="text-sm text-neutral-400 text-center max-w-sm mt-1 mb-3">
-                Your intelligent product assistant for pricing, specs, colors,
-                and availability.
+                Your intelligent product assistant for pricing,
+                specs, colors, and availability.
               </p>
             </div>
             <div className="mt-4 w-full">
