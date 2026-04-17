@@ -6,6 +6,8 @@ import { SYSTEM_PROMPT } from "@/lib/system-prompt";
 export async function POST(req: Request) {
   const { messages } = await req.json();
 
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   const result = await streamText({
     model: anthropic("claude-sonnet-4-20250514"),
     system: SYSTEM_PROMPT,
