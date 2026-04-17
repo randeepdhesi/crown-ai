@@ -10,7 +10,7 @@ export function GlobalSheets() {
 
   return (
     <>
-      <BottomSheet isOpen={openSheet === "settings"} onClose={() => setOpenSheet(null)} heightClass="h-[90vh]">
+      <BottomSheet isOpen={openSheet === "settings"} onClose={() => setOpenSheet(null)} heightClass="h-full">
         <SheetSettings onClose={() => setOpenSheet(null)} />
       </BottomSheet>
 
