@@ -1,67 +1,52 @@
-import Anthropic from "@anthropic-ai/sdk";
+import { streamText } from "ai";
+import { anthropic } from "@ai-sdk/anthropic";
+import { z } from "zod";
 import { SYSTEM_PROMPT } from "@/lib/system-prompt";
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
-
 export async function POST(req: Request) {
-  try {
-    const { messages } = await req.json();
+  const { messages } = await req.json();
 
-    // Convert messages to Anthropic format
-    const anthropicMessages = messages.map(
-      (msg: { role: string; content: string }) => ({
-        role: msg.role as "user" | "assistant",
-        content: msg.content,
-      })
-    );
-
-    // Create streaming response
-    const stream = await anthropic.messages.stream({
-      model: "claude-sonnet-4-20250514",
-      max_tokens: 2048,
-      system: SYSTEM_PROMPT,
-      messages: anthropicMessages,
-    });
-
-    // Return as SSE stream
-    const encoder = new TextEncoder();
-    const readable = new ReadableStream({
-      async start(controller) {
-        try {
-          for await (const event of stream) {
-            if (
-              event.type === "content_block_delta" &&
-              event.delta.type === "text_delta"
-            ) {
-              const data = JSON.stringify({ text: event.delta.text });
-              controller.enqueue(
-                encoder.encode(`data: ${data}\n\n`)
-              );
-            }
-          }
-          controller.enqueue(encoder.encode("data: [DONE]\n\n"));
-          controller.close();
-        } catch (error) {
-          console.error("Stream error:", error);
-          controller.error(error);
-        }
+  const result = await streamText({
+    model: anthropic("claude-sonnet-4-20250514"),
+    system: SYSTEM_PROMPT,
+    messages,
+    maxTokens: 2048,
+    maxSteps: 3,
+    tools: {
+      search_catalog: {
+        description:
+          "Search the Crown Building Supplies product catalog. Use when the user asks about specific products, SKUs, pricing, or stock availability.",
+        parameters: z.object({
+          query: z
+            .string()
+            .describe("Product name, category, or SKU to search for"),
+        }),
+        execute: async ({ query: _query }) => [
+          {
+            id: "UH61-16",
+            name: "Norwegian Fluted Siding 0.9\" × 7.73\" × 16'",
+            price: 194.86,
+            stock: 42,
+            inStock: true,
+          },
+          {
+            id: "UH58-16",
+            name: "Belgian Fluted Siding 0.9\" × 7.73\" × 16'",
+            price: 194.86,
+            stock: 18,
+            inStock: true,
+          },
+          {
+            id: "UH67-16",
+            name: "Shiplap Siding 0.5\" × 5.5\" × 16'",
+            price: 61.05,
+            stock: 0,
+            inStock: false,
+          },
+        ],
       },
-    });
+    },
+  });
 
-    return new Response(readable, {
-      headers: {
-        "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache",
-        Connection: "keep-alive",
-      },
-    });
-  } catch (error) {
-    console.error("API error:", error);
-    return new Response(
-      JSON.stringify({ error: "Failed to process request" }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
-  }
+  return result.toDataStreamResponse();
 }

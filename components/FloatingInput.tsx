@@ -30,10 +30,7 @@ export function FloatingInput() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const hasText = input.trim().length > 0;
-  const placeholder =
-    pathname === "/catalog"
-      ? "Search the full catalog..."
-      : "Ask about products, specs...";
+  const placeholder = "Ask about products, specs...";
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -64,7 +61,7 @@ export function FloatingInput() {
 
   const buttonBg = "bg-[#b3874b] hover:bg-[#96703d]";
 
-  if (pathname !== "/" && pathname !== "/catalog") return null;
+  if (pathname !== "/") return null;
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 z-40">

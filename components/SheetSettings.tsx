@@ -1,62 +1,93 @@
 "use client";
 
+import { useState } from "react";
 import { ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useUIState } from "./UIStateProvider";
 
-export function SheetSettings({ onClose }: { onClose: () => void }) {
-  const router = useRouter();
-  const { setOpenSheet } = useUIState();
+interface ToggleProps {
+  on: boolean;
+  onToggle: () => void;
+}
 
-  function navigateToProfile() {
-    setOpenSheet(null);
-    router.push("/profile");
-  }
+function Toggle({ on, onToggle }: ToggleProps) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      onClick={onToggle}
+      className={`relative inline-flex h-6 w-11 flex-shrink-0 rounded-full transition-colors duration-200 ${
+        on ? "bg-[#b3874b]" : "bg-neutral-600"
+      }`}
+    >
+      {/* Track is 44px wide, dot is 20px. Off: 2px from left. On: 22px from left → 2px from right. */}
+      <span
+        className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transition-transform duration-200 ease-in-out mt-[2px] ${
+          on ? "translate-x-[22px]" : "translate-x-[2px]"
+        }`}
+      />
+    </button>
+  );
+}
+
+export function SheetSettings({ onClose: _ }: { onClose: () => void }) {
+  const [notifications, setNotifications] = useState(true);
+  const [dataRetention, setDataRetention] = useState(false);
 
   return (
     <div className="px-4 pb-8">
       <p className="text-white font-semibold text-base mb-6">Settings</p>
-
-      {/* Account section */}
-      <p className="text-crown-gold text-xs uppercase tracking-widest font-semibold mb-2">
-        Account
-      </p>
-      <button
-        onClick={navigateToProfile}
-        className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3 w-full text-left mb-6"
-      >
-        <div className="w-10 h-10 rounded-full bg-neutral-700 flex items-center justify-center flex-shrink-0">
-          <span className="text-white text-sm font-semibold">R</span>
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-white text-sm font-medium">Randeep Dhesi</p>
-          <p className="text-neutral-400 text-xs">randeep@buildmapper.com</p>
-        </div>
-        <ChevronRight size={16} className="text-neutral-400 flex-shrink-0" />
-      </button>
 
       {/* Preferences section */}
       <p className="text-crown-gold text-xs uppercase tracking-widest font-semibold mb-2">
         Preferences
       </p>
       <div className="flex flex-col gap-2 mb-6">
+
+        {/* Notifications — toggle */}
         <div className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3">
           <div className="flex-1">
             <p className="text-white text-sm font-medium">Notifications</p>
-            <p className="text-neutral-400 text-xs">Manage alerts</p>
+            <p className="text-neutral-400 text-xs">Manage your alerts</p>
           </div>
-          {/* Static toggle indicator — no real state wired */}
-          <div className="w-10 h-6 bg-neutral-600 rounded-full relative flex-shrink-0">
-            <div className="w-4 h-4 bg-white rounded-full absolute top-1 left-1" />
-          </div>
+          <Toggle on={notifications} onToggle={() => setNotifications((v) => !v)} />
         </div>
+
+        {/* Theme — chevron */}
         <button className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3 w-full text-left">
           <div className="flex-1">
-            <p className="text-white text-sm font-medium">Language</p>
-            <p className="text-neutral-400 text-xs">English</p>
+            <p className="text-white text-sm font-medium">Theme</p>
+            <p className="text-neutral-400 text-xs">System Default</p>
           </div>
           <ChevronRight size={16} className="text-neutral-400 flex-shrink-0" />
         </button>
+
+        {/* Data Retention — toggle */}
+        <div className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3">
+          <div className="flex-1">
+            <p className="text-white text-sm font-medium">Data Retention</p>
+            <p className="text-neutral-400 text-xs">Use queries to improve AI</p>
+          </div>
+          <Toggle on={dataRetention} onToggle={() => setDataRetention((v) => !v)} />
+        </div>
+
+        {/* Voice Input — chevron */}
+        <button className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3 w-full text-left">
+          <div className="flex-1">
+            <p className="text-white text-sm font-medium">Voice Input</p>
+            <p className="text-neutral-400 text-xs">Manage language and speed</p>
+          </div>
+          <ChevronRight size={16} className="text-neutral-400 flex-shrink-0" />
+        </button>
+
+        {/* Export History — chevron */}
+        <button className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3 w-full text-left">
+          <div className="flex-1">
+            <p className="text-white text-sm font-medium">Export History</p>
+            <p className="text-neutral-400 text-xs">Download your chat logs</p>
+          </div>
+          <ChevronRight size={16} className="text-neutral-400 flex-shrink-0" />
+        </button>
+
       </div>
 
       {/* Danger section */}
