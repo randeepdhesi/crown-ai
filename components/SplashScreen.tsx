@@ -6,7 +6,9 @@ export default function SplashScreen() {
   const [phase, setPhase] = useState<"in" | "hold" | "out" | "done">("done");
 
   useEffect(() => {
-    if (sessionStorage.getItem("splashShown")) return;
+    const isPwa = window.matchMedia("(display-mode: standalone)").matches
+      || ("standalone" in window.navigator && (window.navigator as { standalone?: boolean }).standalone === true);
+    if (!isPwa || sessionStorage.getItem("splashShown")) return;
     sessionStorage.setItem("splashShown", "1");
     setPhase("in");
     const t1 = setTimeout(() => setPhase("hold"), 400);
