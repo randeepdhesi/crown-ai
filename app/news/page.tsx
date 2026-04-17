@@ -81,7 +81,7 @@ export default function NewsPage() {
                 <User size={18} className="text-emerald-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-semibold mb-2">Call / Text Randeep</p>
+                <p className="text-white text-sm font-semibold mb-2">Call / Text Randeep For More Info</p>
                 <div className="flex flex-row w-full gap-3">
                   <a
                     href="tel:+16043489097"
