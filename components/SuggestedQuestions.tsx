@@ -3,9 +3,7 @@
 const suggestions = [
   "Colors for Norwegian Fluted siding?",
   "Price on 16ft Belgian Fluted boards?",
-  "Trim pieces for NewTechWood siding?",
   "Do you carry ROCKWOOL insulation?",
-  "What scaffolding options do you carry?",
   "Which Crown locations are in Alberta?",
 ];
 
@@ -19,7 +17,7 @@ export default function SuggestedQuestions({ onSelect }: Props) {
       <p className="text-[11px] font-semibold tracking-widest uppercase text-crown-gold/70 text-center mb-2">
         Try asking
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2">
+      <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
         {suggestions.map((q, i) => (
           <button
             key={i}

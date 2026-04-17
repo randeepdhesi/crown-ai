@@ -28,13 +28,13 @@ export default function Home() {
     >
       <div className="max-w-2xl mx-auto px-4 py-3 sm:py-6">
         {!hasMessages ? (
-          <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 sm:gap-6">
-            <div className="flex flex-col items-center gap-2 sm:gap-3">
-              <CrownLogo size={157} className="w-[105px] sm:w-[157px] h-auto" />
+          <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 sm:gap-5">
+            <div className="flex flex-col items-center gap-2">
+              <CrownLogo size={120} className="w-[80px] sm:w-[120px] h-auto" />
               <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-crown-gold">
                 Crown Building Supplies
               </p>
-              <h2 className="text-xl sm:text-2xl font-bold text-white">
+              <h2 className="text-lg sm:text-xl font-bold text-white">
                 Welcome to Crown AI
               </h2>
               <p className="text-sm sm:text-base text-neutral-400 text-center max-w-sm">
