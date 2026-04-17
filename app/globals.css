@@ -75,6 +75,7 @@ body {
   padding: 0.4rem 0.6rem;
   text-align: left;
   white-space: nowrap;
+  color: #e5e5e5;
 }
 .message-content th {
   background: #262626;
