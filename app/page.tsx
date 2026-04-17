@@ -28,7 +28,7 @@ export default function Home() {
     >
       <div className="max-w-2xl mx-auto px-4 py-3 sm:py-6">
         {!hasMessages ? (
-          <div className="flex flex-col items-center justify-center min-h-[60vh]">
+          <div className="flex flex-col items-center justify-start pt-6 min-h-[60vh]">
             <div className="flex flex-col items-center gap-2">
               <CrownLogo size={200} className="w-[140px] sm:w-[200px] h-auto" />
               <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-crown-gold">
@@ -37,12 +37,12 @@ export default function Home() {
               <h2 className="text-lg md:text-xl font-medium text-white mt-6">
                 Welcome to Crown AI
               </h2>
-              <p className="text-sm text-neutral-400 text-center max-w-sm mt-2 mb-6">
+              <p className="text-sm text-neutral-400 text-center max-w-sm mt-2 mb-3">
                 Your intelligent product assistant for pricing, specs, colors,
                 and availability.
               </p>
             </div>
-            <div className="mt-8 w-full">
+            <div className="mt-3 w-full">
               <SuggestedQuestions
                 onSelect={(q) => append({ role: "user", content: q })}
               />
