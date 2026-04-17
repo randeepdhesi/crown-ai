@@ -128,9 +128,6 @@ export default function ChatMessage({ message }: { message: Message }) {
                 </ReactMarkdown>
               </div>
             )}
-            {message.toolInvocations?.map((inv) => (
-              <ToolResult key={inv.toolCallId} invocation={inv} />
-            ))}
           </div>
         )}
       </div>
