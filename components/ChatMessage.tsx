@@ -77,6 +77,8 @@ function ToolResult({ invocation }: { invocation: ToolInvocation }) {
 export default function ChatMessage({ message }: { message: Message }) {
   const isUser = message.role === "user";
 
+  if (!isUser && !message.content) return null;
+
   return (
     <div className={`flex gap-3 animate-fade-in ${isUser ? "flex-row-reverse" : ""}`}>
       {/* Avatar */}
