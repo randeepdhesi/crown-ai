@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className="min-h-screen bg-neutral-950">
+      <body className="min-h-screen bg-neutral-950 overflow-x-hidden">
         <ChatProvider>
           <UIStateProvider>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
