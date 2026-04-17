@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const CHARS_PER_FRAME = 4; // ~240 chars/sec at 60 fps
+const CHARS_PER_FRAME = 8; // ~480 chars/sec at 60 fps — fewer renders, same smooth feel
 
 export function useSmoothStream(content: string, isComplete: boolean): string {
   const [displayed, setDisplayed] = useState(isComplete ? content : "");
@@ -30,6 +30,7 @@ export function useSmoothStream(content: string, isComplete: boolean): string {
         displayedLenRef.current = next;
         setDisplayed(full.slice(0, next));
       }
+      // Always reschedule — new content may arrive on next frame
       rafRef.current = requestAnimationFrame(tick);
     };
 

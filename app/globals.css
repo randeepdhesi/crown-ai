@@ -17,6 +17,9 @@ body {
 }
 
 /* Custom scrollbar */
+.chat-scroll {
+  overflow-anchor: none;
+}
 .chat-scroll::-webkit-scrollbar {
   width: 6px;
 }

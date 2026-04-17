@@ -5,7 +5,6 @@ import type { Message, ToolInvocation } from "ai";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import { Package } from "lucide-react";
-import { motion } from "framer-motion";
 import { useSmoothStream } from "@/hooks/useSmoothStream";
 
 function renderWithSwatches(content: string): string {
@@ -106,9 +105,7 @@ export default function ChatMessage({ message, isStreaming = false, scrollRef }:
       </div>
 
       {/* Message bubble */}
-      <motion.div
-        layout="size"
-        transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.5 }}
+      <div
         className={`max-w-[90%] rounded-2xl px-5 py-4 ${
           isUser
             ? "bg-neutral-800 text-white rounded-tr-md"
@@ -142,7 +139,7 @@ export default function ChatMessage({ message, isStreaming = false, scrollRef }:
             ))}
           </div>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 }
