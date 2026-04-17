@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react";
 
 export default function SplashScreen() {
-  const [phase, setPhase] = useState<"in" | "hold" | "out" | "done">("in");
+  const [phase, setPhase] = useState<"in" | "hold" | "out" | "done">("done");
 
   useEffect(() => {
+    if (sessionStorage.getItem("splashShown")) return;
+    sessionStorage.setItem("splashShown", "1");
+    setPhase("in");
     const t1 = setTimeout(() => setPhase("hold"), 400);
     const t2 = setTimeout(() => setPhase("out"), 1500);
     const t3 = setTimeout(() => setPhase("done"), 2000);
