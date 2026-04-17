@@ -40,7 +40,7 @@ export function PageTransitionWrapper({ children }: { children: ReactNode }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={FADE}
-            className="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm cursor-pointer"
+            className="fixed inset-0 z-30 bg-black/10 backdrop-blur-sm cursor-pointer"
             onClick={() => router.push("/")}
           />
         )}
@@ -54,7 +54,7 @@ export function PageTransitionWrapper({ children }: { children: ReactNode }) {
             initial={{ x: "-100%" }}
             animate={{ x: 0, transition: SPRING }}
             exit={{ x: "-100%", transition: SPRING }}
-            className="fixed top-0 left-0 z-40 h-full w-full md:w-[400px] bg-neutral-900 border-r border-white/5 shadow-2xl overflow-y-auto pt-14 md:rounded-r-3xl"
+            className="fixed top-14 left-0 z-40 h-[calc(100dvh-3.5rem)] w-full md:w-[400px] bg-neutral-900 border-r border-white/5 shadow-2xl overflow-y-auto md:rounded-tr-[2rem] md:rounded-br-[2rem]"
           >
             <FrozenRoute>{children}</FrozenRoute>
           </motion.div>
@@ -69,7 +69,7 @@ export function PageTransitionWrapper({ children }: { children: ReactNode }) {
             initial={{ x: "100%" }}
             animate={{ x: 0, transition: SPRING }}
             exit={{ x: "100%", transition: SPRING }}
-            className="fixed top-0 right-0 z-40 h-full w-full md:w-[400px] bg-neutral-900 border-l border-white/5 shadow-2xl overflow-y-auto pt-14 md:rounded-l-3xl"
+            className="fixed top-14 right-0 z-40 h-[calc(100dvh-3.5rem)] w-full md:w-[400px] bg-neutral-900 border-l border-white/5 shadow-2xl overflow-y-auto md:rounded-tl-[2rem] md:rounded-bl-[2rem]"
           >
             <FrozenRoute>{children}</FrozenRoute>
           </motion.div>

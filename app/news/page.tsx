@@ -10,7 +10,7 @@ export default function NewsPage() {
     <div className="min-h-dvh bg-neutral-900">
       <div className="max-w-2xl mx-auto w-full px-4 py-6">
 
-        {/* Header — back + title grouped left */}
+        {/* Header — mobile: back left; desktop: back right (under the News icon) */}
         <div className="flex items-center gap-3 mb-8">
           <button
             onClick={() => router.back()}
