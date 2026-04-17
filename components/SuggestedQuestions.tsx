@@ -17,13 +17,13 @@ export default function SuggestedQuestions({ onSelect }: Props) {
       <p className="text-[11px] font-semibold tracking-widest uppercase text-crown-gold/70 text-center mb-3">
         Try asking
       </p>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {suggestions.map((q, i) => (
           <button
             key={i}
             onClick={() => onSelect(q)}
             className="text-left text-sm font-medium px-4 py-3 rounded-xl
-                       bg-neutral-800/50 border border-white/5
+                       bg-neutral-800/50 border border-white/5 border-l-[3px] border-l-[#b3874b]
                        hover:bg-neutral-700 transition-all duration-150 text-neutral-200"
           >
             {q}

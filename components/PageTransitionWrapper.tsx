@@ -31,13 +31,13 @@ export function PageTransitionWrapper({ children }: { children: ReactNode }) {
   const variants = getVariants(pathname);
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={pathname}
         initial={variants.initial}
         animate={variants.animate}
         exit={variants.exit}
-        transition={{ duration: 0.22, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="pt-14 pb-32 min-h-dvh"
       >
         {children}
