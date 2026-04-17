@@ -83,7 +83,7 @@ export default function NewsPage() {
               <div className="flex-1 min-w-0">
                 <p className="text-white text-sm font-semibold mb-1">Randeep Dhesi</p>
                 <p className="text-neutral-400 text-xs leading-relaxed">
-                  Ready to upgrade your operations? Let's talk.
+                  Ready to upgrade your operations?
                 </p>
                 <div className="flex flex-col gap-2 mt-4">
                   <a
