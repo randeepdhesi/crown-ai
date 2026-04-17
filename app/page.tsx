@@ -28,23 +28,25 @@ export default function Home() {
     >
       <div className="max-w-2xl mx-auto px-4 py-3 sm:py-6">
         {!hasMessages ? (
-          <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4 sm:gap-5">
+          <div className="flex flex-col items-center justify-center min-h-[60vh]">
             <div className="flex flex-col items-center gap-2">
-              <CrownLogo size={120} className="w-[80px] sm:w-[120px] h-auto" />
+              <CrownLogo size={200} className="w-[140px] sm:w-[200px] h-auto" />
               <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-crown-gold">
                 Crown Building Supplies
               </p>
-              <h2 className="text-lg sm:text-xl font-bold text-white">
+              <h2 className="text-xl md:text-2xl font-semibold text-white">
                 Welcome to Crown AI
               </h2>
-              <p className="text-sm sm:text-base text-neutral-400 text-center max-w-sm">
+              <p className="text-sm text-neutral-400 text-center max-w-sm">
                 Your intelligent product assistant for pricing, specs, colors,
                 and availability.
               </p>
             </div>
-            <SuggestedQuestions
-              onSelect={(q) => append({ role: "user", content: q })}
-            />
+            <div className="mt-8 w-full">
+              <SuggestedQuestions
+                onSelect={(q) => append({ role: "user", content: q })}
+              />
+            </div>
           </div>
         ) : (
           <div className="space-y-4">

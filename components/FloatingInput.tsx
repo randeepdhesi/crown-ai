@@ -9,7 +9,7 @@ import { BottomSheet } from "./BottomSheet";
 import { SheetCatalogSelector } from "./SheetCatalogSelector";
 import { SheetSettings } from "./SheetSettings";
 
-// Heights for the 4 animated waveform bars when listening
+// Keyframe height sequences (px) for the 4 animated waveform bars — closed loop (first === last)
 const BAR_KEYFRAMES = [
   [4, 10, 5, 12, 4],
   [6, 4, 12, 7, 6],
@@ -62,27 +62,25 @@ export function FloatingInput() {
     }
   }
 
-  // Determine button appearance
   const isActive = isListening || hasText;
   const buttonBg = isActive
-    ? "bg-crown-gold hover:bg-crown-gold-dark"
+    ? "bg-[#b3874b] hover:bg-[#96703d]"
     : "bg-neutral-700 hover:bg-neutral-600";
 
   return (
     <>
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 z-40">
-        <div className="bg-neutral-800/80 backdrop-blur-md border border-white/10 rounded-2xl px-3 py-2 shadow-2xl">
-          {/* Single flex row: [Context Pill] [Textarea] [Action Button] */}
+        <div className="bg-neutral-800/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl">
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="flex items-end gap-2"
+            className="flex items-end gap-3 px-4 py-3"
           >
-            {/* Context pill — aligns to bottom of row */}
+            {/* Context pill */}
             <button
               type="button"
               onClick={() => setOpenSheet("catalog")}
-              className="self-end flex-shrink-0 bg-neutral-700 hover:bg-neutral-600 text-neutral-300 text-xs rounded-full px-3 py-1 font-medium transition-colors mb-1"
+              className="flex-shrink-0 self-end bg-neutral-700 hover:bg-neutral-600 text-neutral-300 text-xs rounded-full px-3 py-1 font-medium transition-colors mb-0.5"
             >
               {selectedSource}
             </button>
@@ -95,17 +93,16 @@ export function FloatingInput() {
               onKeyDown={handleKeyDown}
               placeholder={placeholder}
               rows={1}
-              style={{ minHeight: "40px" }}
-              className="flex-1 bg-transparent resize-none outline-none text-sm text-white placeholder:text-neutral-500 py-1.5"
+              className="flex-1 min-h-[40px] bg-transparent border-0 outline-none resize-none text-sm text-white placeholder:text-neutral-400 py-2"
               disabled={isLoading}
             />
 
-            {/* Unified action button */}
+            {/* Unified action button — circle */}
             <motion.button
               type="button"
               onClick={handleActionClick}
               disabled={!isListening && (isLoading || (!isSpeechSupported && !hasText))}
-              className={`self-end flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-colors disabled:cursor-not-allowed disabled:pointer-events-none ${buttonBg}`}
+              className={`flex-shrink-0 self-end w-9 h-9 rounded-full flex items-center justify-center transition-colors disabled:cursor-not-allowed disabled:pointer-events-none ${buttonBg}`}
               aria-label={
                 hasText
                   ? "Send message"
@@ -115,7 +112,7 @@ export function FloatingInput() {
               }
             >
               {hasText ? (
-                /* Send arrow */
+                /* Black upward arrow on gold */
                 <svg
                   width="16"
                   height="16"
@@ -130,7 +127,7 @@ export function FloatingInput() {
                   <polyline points="5 12 12 5 19 12" />
                 </svg>
               ) : isListening ? (
-                /* Animated waveform bars */
+                /* Animated waveform bars on gold */
                 <div className="flex items-end gap-[2px] h-4">
                   {BAR_KEYFRAMES.map((frames, i) => (
                     <motion.span
@@ -148,7 +145,7 @@ export function FloatingInput() {
                   ))}
                 </div>
               ) : (
-                /* Default mic SVG */
+                /* Gray mic on dark */
                 <svg
                   width="16"
                   height="16"

@@ -31,7 +31,9 @@ export function BottomSheet({ isOpen, onClose, heightClass, children }: BottomSh
             className={`fixed bottom-0 left-0 right-0 ${heightClass} bg-neutral-900 rounded-t-2xl z-[60] overflow-y-auto`}
           >
             <div className="w-10 h-1 bg-neutral-600 rounded-full mx-auto mt-3 mb-4" />
-            {children}
+            <div className="max-w-2xl mx-auto w-full">
+              {children}
+            </div>
           </motion.div>
         </>
       )}

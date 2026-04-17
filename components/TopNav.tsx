@@ -2,24 +2,22 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { UserCircle, Newspaper, MessageCircle, Grid2x2 } from "lucide-react";
-import { useUIState } from "./UIStateProvider";
 
 export function TopNav() {
   const pathname = usePathname();
   const router = useRouter();
-  const { setOpenSheet } = useUIState();
 
   const isChatActive = pathname === "/";
   const isCatalogActive = pathname === "/catalog";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-neutral-950/80 backdrop-blur-sm border-b border-white/5">
-      <div className="flex items-center justify-between h-full w-full max-w-2xl mx-auto px-4">
-        {/* Left: Profile → opens Settings sheet */}
+      <div className="flex items-center justify-between h-full w-full px-4">
+        {/* Left: Profile → /profile */}
         <button
-          onClick={() => setOpenSheet("settings")}
-          className="w-9 h-9 rounded-full bg-neutral-800 flex items-center justify-center"
-          aria-label="Settings"
+          onClick={() => router.push("/profile")}
+          className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center transition-colors"
+          aria-label="Profile"
         >
           <UserCircle size={18} className="text-neutral-300" />
         </button>
@@ -49,7 +47,7 @@ export function TopNav() {
         {/* Right: News */}
         <button
           onClick={() => router.push("/news")}
-          className="w-9 h-9 rounded-full bg-neutral-800 flex items-center justify-center"
+          className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center transition-colors"
           aria-label="News"
         >
           <Newspaper size={18} className="text-neutral-300" />
