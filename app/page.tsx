@@ -21,6 +21,15 @@ export default function Home() {
     }
   }, [messages, isLoading]);
 
+  useEffect(() => {
+    if (hasMessages) return;
+    const reset = () => {
+      if (mainRef.current) mainRef.current.scrollTop = 0;
+    };
+    window.visualViewport?.addEventListener("resize", reset);
+    return () => window.visualViewport?.removeEventListener("resize", reset);
+  }, [hasMessages]);
+
   return (
     <div
       ref={mainRef}
