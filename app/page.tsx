@@ -24,11 +24,11 @@ export default function Home() {
   return (
     <div
       ref={mainRef}
-      className={`chat-scroll h-[calc(100dvh-152px)] ${hasMessages ? "overflow-y-auto" : "overflow-hidden"}`}
+      className={`chat-scroll h-[calc(100dvh-152px)] overscroll-none ${hasMessages ? "overflow-y-auto" : "overflow-hidden"}`}
     >
       <div className="max-w-2xl mx-auto px-4 py-3 sm:py-6">
         {!hasMessages ? (
-          <div className="flex flex-col items-center justify-center min-h-[60vh]">
+          <div className="flex flex-col items-center justify-center h-full">
             <div className="flex flex-col items-center gap-2">
               <CrownLogo size={200} className="w-[140px] sm:w-[200px] h-auto" />
               <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-crown-gold">
