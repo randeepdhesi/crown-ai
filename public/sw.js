@@ -1,4 +1,4 @@
-const CACHE = "crown-ai-v1";
+const CACHE = "crown-ai-v2";
 const APP_SHELL = ["/", "/manifest.json", "/icon-192.png", "/icon-512.png"];
 
 self.addEventListener("install", (e) => {
