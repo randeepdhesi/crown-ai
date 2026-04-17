@@ -26,8 +26,8 @@ export default function SuggestedQuestions({ onSelect }: Props) {
             onClick={() => onSelect(q)}
             className="text-left text-sm font-medium px-3 py-2.5 sm:px-4 sm:py-3
                        rounded-lg border border-crown-gold/25 border-l-[3px] border-l-crown-gold
-                       bg-white hover:bg-crown-gold/5 hover:border-crown-gold/50
-                       transition-all duration-150 text-crown-charcoal"
+                       bg-neutral-900 hover:bg-neutral-800 hover:border-crown-gold/50
+                       transition-all duration-150 text-neutral-200"
           >
             {q}
           </button>
