@@ -91,7 +91,7 @@ export function FloatingInput() {
                 onKeyDown={handleKeyDown}
                 placeholder={placeholder}
                 rows={1}
-                className="flex-grow min-h-[40px] bg-transparent border-none outline-none resize-none text-sm text-white placeholder:text-neutral-400"
+                className="flex-grow min-h-[40px] bg-transparent border-none outline-none resize-none text-base text-white placeholder:text-neutral-400 py-2"
                 disabled={isLoading}
               />
 
