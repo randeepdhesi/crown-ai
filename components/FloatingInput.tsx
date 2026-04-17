@@ -11,10 +11,10 @@ import { SheetSettings } from "./SheetSettings";
 
 // Heights for the 4 animated waveform bars when listening
 const BAR_KEYFRAMES = [
-  [4, 10, 5, 4],
-  [6, 4, 12, 7],
-  [10, 7, 4, 10],
-  [4, 12, 8, 4],
+  [4, 10, 5, 12, 4],
+  [6, 4, 12, 7, 6],
+  [10, 7, 4, 10, 10],
+  [4, 12, 8, 5, 4],
 ];
 
 export function FloatingInput() {
@@ -104,7 +104,7 @@ export function FloatingInput() {
             <motion.button
               type="button"
               onClick={handleActionClick}
-              disabled={isLoading || (!isSpeechSupported && !hasText)}
+              disabled={!isListening && (isLoading || (!isSpeechSupported && !hasText))}
               className={`self-end flex-shrink-0 w-9 h-9 rounded-lg flex items-center justify-center transition-colors disabled:cursor-not-allowed disabled:pointer-events-none ${buttonBg}`}
               aria-label={
                 hasText
