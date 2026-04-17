@@ -17,7 +17,7 @@ const screens = [
 ];
 
 for (const { w, h, name } of screens) {
-  const logoSize = Math.round(w * 0.28);
+  const logoSize = Math.round(w * 0.18);
   const logoX = Math.round((w - logoSize) / 2);
   const logoY = Math.round(h * 0.36 - logoSize / 2);
   const textY = logoY + logoSize + Math.round(h * 0.045);

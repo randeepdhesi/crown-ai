@@ -7,6 +7,7 @@ import { TopNav } from "@/components/TopNav";
 import { FloatingInput } from "@/components/FloatingInput";
 import { GlobalSheets } from "@/components/GlobalSheets";
 import { PageTransitionWrapper } from "@/components/PageTransitionWrapper";
+import SplashScreen from "@/components/SplashScreen";
 
 export const viewport: Viewport = {
   themeColor: "#1a1a1a",
@@ -46,6 +47,7 @@ export default function RootLayout({
         <link rel="apple-touch-startup-image" href="/splash-750x1334.png"  media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" />
       </head>
       <body className="min-h-screen bg-neutral-950 overflow-x-hidden">
+        <SplashScreen />
         <ChatProvider>
           <UIStateProvider>
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
