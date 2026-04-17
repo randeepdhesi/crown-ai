@@ -1,11 +1,15 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { UserCircle, Newspaper, MessageCircle, Grid2x2 } from "lucide-react";
+import { UserCircle, Newspaper, MessageCircle, Grid2x2, Settings } from "lucide-react";
+import { useUIState } from "./UIStateProvider";
 
 export function TopNav() {
   const pathname = usePathname();
   const router = useRouter();
+  const { openSheet, setOpenSheet } = useUIState();
+
+  const isOnProfile = pathname === "/profile";
 
   const isChatActive = pathname === "/";
   const isCatalogActive = pathname === "/catalog";
@@ -13,13 +17,21 @@ export function TopNav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-neutral-950/80 backdrop-blur-sm border-b border-white/5">
       <div className="flex items-center justify-between h-full w-full px-4">
-        {/* Left: Profile → /profile */}
+        {/* Left: Profile nav or Settings toggle when on /profile */}
         <button
-          onClick={() => router.push("/profile")}
+          onClick={() =>
+            isOnProfile
+              ? setOpenSheet(openSheet === "settings" ? null : "settings")
+              : router.push("/profile")
+          }
           className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center transition-colors"
-          aria-label="Profile"
+          aria-label={isOnProfile ? "Settings" : "Profile"}
         >
-          <UserCircle size={18} className="text-neutral-300" />
+          {isOnProfile ? (
+            <Settings size={18} className="text-neutral-300" />
+          ) : (
+            <UserCircle size={18} className="text-neutral-300" />
+          )}
         </button>
 
         {/* Center: Chat / Catalog toggle */}
@@ -44,9 +56,9 @@ export function TopNav() {
           </button>
         </div>
 
-        {/* Right: News */}
+        {/* Right: News toggle */}
         <button
-          onClick={() => router.push("/news")}
+          onClick={() => router.push(pathname === "/news" ? "/" : "/news")}
           className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center transition-colors"
           aria-label="News"
         >

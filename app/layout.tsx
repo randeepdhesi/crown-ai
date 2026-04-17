@@ -5,6 +5,7 @@ import { ChatProvider } from "@/components/ChatProvider";
 import { UIStateProvider } from "@/components/UIStateProvider";
 import { TopNav } from "@/components/TopNav";
 import { FloatingInput } from "@/components/FloatingInput";
+import { GlobalSheets } from "@/components/GlobalSheets";
 import { PageTransitionWrapper } from "@/components/PageTransitionWrapper";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({
               <TopNav />
               <PageTransitionWrapper>{children}</PageTransitionWrapper>
               <FloatingInput />
+              <GlobalSheets />
             </ThemeProvider>
           </UIStateProvider>
         </ChatProvider>

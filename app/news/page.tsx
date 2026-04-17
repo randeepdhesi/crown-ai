@@ -10,16 +10,16 @@ export default function NewsPage() {
     <div className="min-h-dvh bg-neutral-900">
       <div className="max-w-2xl mx-auto w-full px-4 py-6">
 
-        {/* Header — back button on the right */}
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-white font-semibold text-lg">Updates</h1>
+        {/* Header — back + title grouped left */}
+        <div className="flex items-center gap-3 mb-8">
           <button
             onClick={() => router.back()}
-            className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center transition-colors"
+            className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center transition-colors flex-shrink-0"
             aria-label="Go back"
           >
             <ChevronLeft size={18} className="text-neutral-300" />
           </button>
+          <h1 className="text-white font-semibold text-lg">Updates</h1>
         </div>
 
         {/* Feed */}
