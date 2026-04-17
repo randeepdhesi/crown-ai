@@ -85,13 +85,13 @@ export default function NewsPage() {
                 <div className="flex flex-row w-full gap-3">
                   <a
                     href="tel:+16043489097"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-neutral-700 hover:border-[#b3874b] bg-neutral-800/50 hover:bg-[#b3874b]/10 text-sm font-medium transition-colors text-neutral-200"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-neutral-700 hover:border-[#b3874b] bg-neutral-700 hover:bg-[#b3874b]/10 text-sm font-medium transition-colors text-neutral-200"
                   >
                     📞 Call
                   </a>
                   <a
                     href="sms:+16043489097"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-neutral-700 hover:border-[#b3874b] bg-neutral-800/50 hover:bg-[#b3874b]/10 text-sm font-medium transition-colors text-neutral-200"
+                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-neutral-700 hover:border-[#b3874b] bg-neutral-700 hover:bg-[#b3874b]/10 text-sm font-medium transition-colors text-neutral-200"
                   >
                     💬 Text
                   </a>
