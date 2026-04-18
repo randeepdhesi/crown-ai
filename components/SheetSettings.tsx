@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronRight } from "lucide-react";
+import { Bell, ChevronRight, Database, Download, LogOut, Mic, Moon } from "lucide-react";
 
 interface ToggleProps {
   on: boolean;
@@ -45,6 +45,7 @@ export function SheetSettings({ onClose: _ }: { onClose: () => void }) {
 
         {/* Notifications — toggle */}
         <div className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3">
+          <Bell size={16} className="text-neutral-400 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-white text-sm font-medium">Notifications</p>
             <p className="text-neutral-400 text-xs">Manage your alerts</p>
@@ -54,6 +55,7 @@ export function SheetSettings({ onClose: _ }: { onClose: () => void }) {
 
         {/* Theme — chevron */}
         <button className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3 w-full text-left">
+          <Moon size={16} className="text-neutral-400 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-white text-sm font-medium">Theme</p>
             <p className="text-neutral-400 text-xs">System Default</p>
@@ -63,6 +65,7 @@ export function SheetSettings({ onClose: _ }: { onClose: () => void }) {
 
         {/* Data Retention — toggle */}
         <div className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3">
+          <Database size={16} className="text-neutral-400 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-white text-sm font-medium">Data Retention</p>
             <p className="text-neutral-400 text-xs">Use queries to improve AI</p>
@@ -72,6 +75,7 @@ export function SheetSettings({ onClose: _ }: { onClose: () => void }) {
 
         {/* Voice Input — chevron */}
         <button className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3 w-full text-left">
+          <Mic size={16} className="text-neutral-400 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-white text-sm font-medium">Voice Input</p>
             <p className="text-neutral-400 text-xs">Manage language and speed</p>
@@ -81,6 +85,7 @@ export function SheetSettings({ onClose: _ }: { onClose: () => void }) {
 
         {/* Export History — chevron */}
         <button className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3 w-full text-left">
+          <Download size={16} className="text-neutral-400 flex-shrink-0" />
           <div className="flex-1">
             <p className="text-white text-sm font-medium">Export History</p>
             <p className="text-neutral-400 text-xs">Download your chat logs</p>
@@ -91,7 +96,11 @@ export function SheetSettings({ onClose: _ }: { onClose: () => void }) {
       </div>
 
       {/* Danger section */}
+      <p className="text-crown-gold text-xs uppercase tracking-widest font-semibold mb-2">
+        Danger
+      </p>
       <button className="flex items-center gap-3 bg-neutral-800/50 rounded-xl px-4 py-3 w-full text-left">
+        <LogOut size={16} className="text-red-500 flex-shrink-0" />
         <span className="text-red-500 text-sm font-medium">Log Out</span>
       </button>
     </div>

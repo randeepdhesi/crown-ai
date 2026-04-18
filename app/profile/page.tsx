@@ -84,8 +84,8 @@ export default function ProfilePage() {
           Account
         </p>
         <div className="flex items-center gap-3 bg-neutral-800 rounded-xl px-4 py-3 mb-6">
-          <div className="w-10 h-10 rounded-full bg-neutral-700 flex items-center justify-center flex-shrink-0">
-            <span className="text-white text-sm font-semibold">C</span>
+          <div className="w-10 h-10 rounded-full ring-2 ring-crown-gold/40 overflow-hidden flex-shrink-0">
+            <img src="/icon-192.png" alt="Crown AI" width={40} height={40} className="w-full h-full object-cover" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-white text-sm font-medium">Crown AI Operator</p>
@@ -95,9 +95,14 @@ export default function ProfilePage() {
         </div>
 
         {/* Intelligence Sources section */}
-        <p className="text-crown-gold text-xs uppercase tracking-widest font-semibold mb-2">
-          Intelligence Sources
-        </p>
+        <div className="flex items-center justify-between mb-2">
+          <p className="text-crown-gold text-xs uppercase tracking-widest font-semibold">
+            Intelligence Sources
+          </p>
+          <span className="text-xs text-crown-gold/60 font-medium">
+            {Object.values(states).filter((s) => s === "connected").length} / {SOURCES.length} active
+          </span>
+        </div>
         <div className="flex flex-col gap-2">
           {SOURCES.map(({ id, name, iconBg, iconColor, label }) => {
             const state = states[id] ?? "idle";
@@ -111,9 +116,12 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-white text-sm font-medium">{name}</p>
-                  <p className="text-neutral-400 text-xs">
-                    {state === "connected" ? "Connected" : "Not connected"}
-                  </p>
+                  <div className="flex items-center gap-1.5 mt-0.5">
+                    <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${state === "connected" ? "bg-emerald-400" : "bg-neutral-600"}`} />
+                    <p className={`text-xs ${state === "connected" ? "text-emerald-400" : "text-neutral-500"}`}>
+                      {state === "connected" ? "Connected" : "Not connected"}
+                    </p>
+                  </div>
                 </div>
                 <button
                   onClick={() => handleConnect(id)}
