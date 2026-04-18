@@ -59,12 +59,15 @@ export default function Home() {
               <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-crown-gold">
                 Crown Building Supplies
               </p>
-              <h2 className="text-lg md:text-xl font-medium text-white mt-3">
-                Welcome to Crown AI
+              <h2 className="flex items-center gap-2 text-lg md:text-xl font-medium text-white mt-3">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
+                </span>
+                Crown AI Operator
               </h2>
               <p className="text-sm text-neutral-400 text-center max-w-sm mt-1 mb-3">
-                Your voice-powered AI Operator. Pull specs,<br />
-                check inventory, and generate quotes.
+                Wired into every system your business runs on.
               </p>
             </div>
             <div className="mt-4 w-full">
