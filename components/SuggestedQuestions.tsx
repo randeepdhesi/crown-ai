@@ -22,7 +22,7 @@ export default function SuggestedQuestions({ onSelect }: Props) {
           <button
             key={i}
             onClick={() => onSelect(q)}
-            className="text-left text-sm font-medium px-4 py-3 rounded-xl
+            className="text-left text-sm md:text-xs lg:text-sm font-medium px-4 py-3 rounded-xl
                        bg-neutral-800/50 border border-white/5 border-l-[3px] border-l-[#b3874b]
                        hover:bg-neutral-700 transition-all duration-150 text-neutral-200"
           >
