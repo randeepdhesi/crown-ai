@@ -8,9 +8,17 @@ export async function POST(req: Request) {
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
+  const today = new Date().toLocaleDateString("en-CA", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "America/Vancouver",
+  });
+  const system = SYSTEM_PROMPT.replace(/\{\{TODAY\}\}/g, today);
+
   const result = await streamText({
     model: anthropic("claude-sonnet-4-20250514"),
-    system: SYSTEM_PROMPT,
+    system,
     messages,
     maxTokens: 2048,
     maxSteps: 3,
