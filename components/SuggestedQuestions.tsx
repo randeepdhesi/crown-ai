@@ -1,10 +1,10 @@
 "use client";
 
 const suggestions = [
-  "Which Crown locations are in Alberta?",
-  "Check stock on Norwegian Fluted Siding in Teak across all locations",
-  "Draft an email to Jim at Pacific Coast about his pending drywall order",
-  "Colors for Norwegian Fluted siding?",
+  "What Crown locations do we have in Alberta?",
+  "What's our stock on Norwegian Fluted Teak across all locations?",
+  "Can you draft an email to Jim at Pacific Coast about his pending drywall order?",
+  "What colors does Norwegian Fluted siding come in?",
 ];
 
 interface Props {
