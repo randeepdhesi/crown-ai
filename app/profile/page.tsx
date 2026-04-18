@@ -53,7 +53,7 @@ const SOURCES = [
 
 export default function ProfilePage() {
   const router = useRouter();
-  const [states, setStates] = useState<Record<string, ConnectState>>({});
+  const [states, setStates] = useState<Record<string, ConnectState>>({ buildmapper: "connected" });
 
   function handleConnect(id: string) {
     if (states[id] === "connected") return;
