@@ -1,6 +1,7 @@
 "use client";
 
-import { ChevronRight, SlidersHorizontal, Brain, Sparkles, Phone, MessageSquare } from "lucide-react";
+import { ChevronRight, SlidersHorizontal, Brain, Sparkles, Phone, MessageSquare, HardHat, Hammer, Package, Settings2, Store, Building2, Briefcase, Truck } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function NewsPage() {
@@ -97,20 +98,20 @@ export default function NewsPage() {
           </p>
           <div className="flex flex-wrap gap-2">
             {[
-              { label: "Building Supply", emoji: "🏗️" },
-              { label: "Construction", emoji: "🔨" },
-              { label: "Distribution", emoji: "📦" },
-              { label: "Manufacturing", emoji: "⚙️" },
-              { label: "Wholesale", emoji: "🏭" },
-              { label: "Real Estate", emoji: "🏢" },
-              { label: "Professional Services", emoji: "💼" },
-              { label: "Trucking & Logistics", emoji: "🚛" },
-            ].map(({ label, emoji }) => (
+              { label: "Building Supply", Icon: HardHat },
+              { label: "Construction", Icon: Hammer },
+              { label: "Distribution", Icon: Package },
+              { label: "Manufacturing", Icon: Settings2 },
+              { label: "Wholesale", Icon: Store },
+              { label: "Real Estate", Icon: Building2 },
+              { label: "Professional Services", Icon: Briefcase },
+              { label: "Trucking & Logistics", Icon: Truck },
+            ].map(({ label, Icon }: { label: string; Icon: LucideIcon }) => (
               <span
                 key={label}
                 className="inline-flex items-center gap-1.5 text-crown-gold text-xs border border-crown-gold/30 px-3 py-1.5 rounded-full"
               >
-                <span>{emoji}</span>
+                <Icon size={11} />
                 {label}
               </span>
             ))}
