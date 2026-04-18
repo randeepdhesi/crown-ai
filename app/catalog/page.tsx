@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { ChevronLeft, Layers, Thermometer, Upload } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { ChevronLeft, CheckCircle, Layers, Thermometer, Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { CATALOG, type Product, type StockStatus } from "@/lib/catalog-data";
@@ -123,6 +123,7 @@ export default function CatalogPage() {
   const router = useRouter();
   const [uploadState, setUploadState] = useState<UploadState>("idle");
   const [fileName, setFileName] = useState("");
+  const [visible, setVisible] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -130,8 +131,21 @@ export default function CatalogPage() {
     if (!file) return;
     setFileName(file.name);
     setUploadState("uploading");
-    setTimeout(() => setUploadState("done"), 1800);
+    setTimeout(() => {
+      setUploadState("done");
+      setVisible(true);
+    }, 1800);
   }
+
+  useEffect(() => {
+    if (uploadState !== "done") return;
+    const fadeOut = setTimeout(() => setVisible(false), 3000);
+    const reset = setTimeout(() => {
+      setUploadState("idle");
+      if (inputRef.current) inputRef.current.value = "";
+    }, 3600);
+    return () => { clearTimeout(fadeOut); clearTimeout(reset); };
+  }, [uploadState]);
 
   return (
     <div className="min-h-dvh bg-neutral-900">
@@ -173,7 +187,10 @@ export default function CatalogPage() {
               </div>
             )}
             {uploadState === "done" && (
-              <span className="text-xs text-emerald-400 font-medium">{fileName} uploaded</span>
+              <span className={`flex items-center gap-1.5 text-xs text-emerald-400 font-semibold uppercase tracking-widest transition-opacity duration-500 ${visible ? "opacity-100" : "opacity-0"}`}>
+                <CheckCircle size={13} />
+                Uploaded
+              </span>
             )}
             <input
               ref={inputRef}
@@ -210,16 +227,41 @@ export default function CatalogPage() {
           ))}
 
           {/* Bottom upload card */}
-          <button
-            onClick={() => inputRef.current?.click()}
-            className="w-full border border-dashed border-crown-gold/30 hover:border-crown-gold/60 hover:bg-crown-gold/5 rounded-xl py-8 flex flex-col items-center gap-2 transition-colors group"
-          >
-            <div className="w-10 h-10 rounded-full bg-crown-gold/10 group-hover:bg-crown-gold/15 flex items-center justify-center transition-colors">
-              <Upload size={18} className="text-crown-gold" />
+          {uploadState === "done" ? (
+            <div className={`w-full border border-dashed border-emerald-500/40 bg-emerald-500/5 rounded-xl py-8 flex flex-col items-center gap-2 transition-opacity duration-500 ${visible ? "opacity-100" : "opacity-0"}`}>
+              <div className="w-10 h-10 rounded-full bg-emerald-500/15 flex items-center justify-center">
+                <CheckCircle size={20} className="text-emerald-400" />
+              </div>
+              <p className="text-emerald-400 text-sm font-semibold uppercase tracking-widest">Uploaded Successfully</p>
+              <p className="text-neutral-500 text-xs truncate max-w-[240px]">{fileName}</p>
             </div>
-            <p className="text-crown-gold text-sm font-semibold uppercase tracking-widest">Add Products</p>
-            <p className="text-neutral-500 text-xs">CSV, Excel or PDF</p>
-          </button>
+          ) : (
+            <button
+              onClick={() => inputRef.current?.click()}
+              disabled={uploadState === "uploading"}
+              className="w-full border border-dashed border-crown-gold/30 hover:border-crown-gold/60 hover:bg-crown-gold/5 rounded-xl py-8 flex flex-col items-center gap-2 transition-colors group disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {uploadState === "uploading" ? (
+                <div className="flex gap-1.5 items-center h-10">
+                  {[0, 1, 2].map((i) => (
+                    <span
+                      key={i}
+                      className="w-2 h-2 rounded-full bg-crown-gold animate-pulse"
+                      style={{ animationDelay: `${i * 150}ms` }}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="w-10 h-10 rounded-full bg-crown-gold/10 group-hover:bg-crown-gold/15 flex items-center justify-center transition-colors">
+                  <Upload size={18} className="text-crown-gold" />
+                </div>
+              )}
+              <p className="text-crown-gold text-sm font-semibold uppercase tracking-widest">
+                {uploadState === "uploading" ? "Uploading…" : "Add Products"}
+              </p>
+              {uploadState === "idle" && <p className="text-neutral-500 text-xs">CSV, Excel or PDF</p>}
+            </button>
+          )}
         </div>
 
       </div>
