@@ -84,6 +84,7 @@ export default function Home() {
                 message={msg}
                 isStreaming={isLoading && msg.id === lastAssistantMsgId}
                 scrollRef={msg.id === lastUserMsgId ? lastUserMsgRef : undefined}
+                onSend={() => append({ role: "user", content: "Yes, send it." })}
               />
             ))}
             {showTypingIndicator && <TypingIndicator />}

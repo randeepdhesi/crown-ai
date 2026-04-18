@@ -1,10 +1,11 @@
 "use client";
 
 import type { RefObject } from "react";
+import { useState } from "react";
 import type { Message, ToolInvocation } from "ai";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { Package, Phone } from "lucide-react";
+import { Check, Copy, Package, Phone, Send } from "lucide-react";
 import { useSmoothStream } from "@/hooks/useSmoothStream";
 
 function renderWithSwatches(content: string): string {
@@ -75,12 +76,22 @@ interface ChatMessageProps {
   message: Message;
   isStreaming?: boolean;
   scrollRef?: RefObject<HTMLDivElement>;
+  onSend?: () => void;
 }
 
-export default function ChatMessage({ message, isStreaming = false, scrollRef }: ChatMessageProps) {
+export default function ChatMessage({ message, isStreaming = false, scrollRef, onSend }: ChatMessageProps) {
   const isUser = message.role === "user";
   const smoothContent = useSmoothStream(message.content, !isStreaming);
   const showCallButton = !isUser && !isStreaming && message.content.includes("604-348-9097");
+  const isEmailDraft = !isUser && !isStreaming && message.content.includes("Subject:");
+  const showActions = !isUser && !isStreaming && !!message.content;
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy() {
+    navigator.clipboard.writeText(message.content);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
 
   if (!isUser && !message.content) return null;
 
@@ -105,47 +116,72 @@ export default function ChatMessage({ message, isStreaming = false, scrollRef }:
         )}
       </div>
 
-      {/* Message bubble */}
-      <div
-        className={`max-w-[90%] rounded-2xl px-5 py-4 ${
-          isUser
-            ? "bg-neutral-800 text-white rounded-tr-md"
-            : "bg-neutral-900 text-neutral-100 shadow-sm border-l-[3px] border-crown-gold rounded-tl-md"
-        }`}
-      >
-        {isUser ? (
-          <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
-            {message.content}
-          </p>
-        ) : (
-          <div className="space-y-3">
-            {smoothContent && (
-              <div className="message-content text-sm sm:text-base leading-relaxed">
-                <ReactMarkdown
-                  rehypePlugins={[rehypeRaw]}
-                  components={{
-                    table: ({ children }) => (
-                      <div className="table-wrapper">
-                        <table>{children}</table>
-                      </div>
-                    ),
-                  }}
+      {/* Bubble + actions column */}
+      <div className="flex flex-col gap-2 max-w-[90%]">
+        <div
+          className={`rounded-2xl px-5 py-4 ${
+            isUser
+              ? "bg-neutral-800 text-white rounded-tr-md"
+              : "bg-neutral-900 text-neutral-100 shadow-sm border-l-[3px] border-crown-gold rounded-tl-md"
+          }`}
+        >
+          {isUser ? (
+            <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap">
+              {message.content}
+            </p>
+          ) : (
+            <div className="space-y-3">
+              {smoothContent && (
+                <div className="message-content text-sm sm:text-base leading-relaxed">
+                  <ReactMarkdown
+                    rehypePlugins={[rehypeRaw]}
+                    components={{
+                      table: ({ children }) => (
+                        <div className="table-wrapper">
+                          <table>{children}</table>
+                        </div>
+                      ),
+                    }}
+                  >
+                    {renderWithSwatches(smoothContent)}
+                  </ReactMarkdown>
+                </div>
+              )}
+              {message.toolInvocations?.map((inv) => (
+                <ToolResult key={inv.toolCallId} invocation={inv} />
+              ))}
+              {showCallButton && (
+                <a
+                  href="tel:+16043489097"
+                  className="inline-flex items-center gap-2 mt-1 px-4 py-2.5 bg-crown-gold text-black font-semibold text-sm rounded-lg hover:opacity-90 transition-opacity"
                 >
-                  {renderWithSwatches(smoothContent)}
-                </ReactMarkdown>
-              </div>
-            )}
-            {message.toolInvocations?.map((inv) => (
-              <ToolResult key={inv.toolCallId} invocation={inv} />
-            ))}
-            {showCallButton && (
-              <a
-                href="tel:+16043489097"
-                className="inline-flex items-center gap-2 mt-1 px-4 py-2.5 bg-crown-gold text-black font-semibold text-sm rounded-lg hover:opacity-90 transition-opacity"
+                  <Phone size={15} />
+                  Call Randeep
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Action buttons */}
+        {showActions && (
+          <div className="flex items-center gap-2 px-1">
+            <button
+              onClick={handleCopy}
+              className="flex items-center gap-1.5 text-xs text-neutral-600 hover:text-neutral-400 transition-colors"
+            >
+              {copied ? <Check size={11} className="text-emerald-400" /> : <Copy size={11} />}
+              <span className={copied ? "text-emerald-400" : ""}>{copied ? "Copied" : "Copy"}</span>
+            </button>
+
+            {isEmailDraft && onSend && (
+              <button
+                onClick={onSend}
+                className="flex items-center gap-1.5 text-xs text-crown-gold border border-crown-gold/30 hover:bg-crown-gold/10 px-3 py-1 rounded-full transition-colors"
               >
-                <Phone size={15} />
-                Call Randeep
-              </a>
+                <Send size={11} />
+                Send Email
+              </button>
             )}
           </div>
         )}
