@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, SlidersHorizontal, Brain, Sparkles, User } from "lucide-react";
+import { ChevronRight, SlidersHorizontal, Brain, Sparkles, Phone, MessageSquare } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function NewsPage() {
@@ -30,11 +30,9 @@ export default function NewsPage() {
                 <Sparkles size={18} className="text-purple-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-semibold mb-1">Voice-Powered AI Documents</p>
+                <p className="text-white text-sm font-semibold mb-1">Instant Document Generation</p>
                 <p className="text-neutral-400 text-xs leading-relaxed">
-                  Just speak to the app to instantly auto-generate proposals, bids, quotes, and
-                  invoices. It handles the formatting and emails them directly to your clients
-                  from wherever you are.
+                  Speak to generate quotes, proposals, and invoices on the spot. Formatted and ready to send — no typing, no templates.
                 </p>
               </div>
             </div>
@@ -47,11 +45,9 @@ export default function NewsPage() {
                 <Brain size={18} className="text-blue-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-semibold mb-1">Your Ultimate Internal AI Operator</p>
+                <p className="text-white text-sm font-semibold mb-1">One System, Every Answer</p>
                 <p className="text-neutral-400 text-xs leading-relaxed">
-                  Connect your ERP, CRM, emails, and internal docs into one intelligent hub. It
-                  knows your business inside and out, ensuring your team never hits a roadblock or
-                  wastes time hunting for answers.
+                  Your ERP, CRM, email, and product data — unified. Your team gets instant answers without digging through tabs or waiting on colleagues.
                 </p>
               </div>
             </div>
@@ -65,38 +61,33 @@ export default function NewsPage() {
                 <SlidersHorizontal size={18} className="text-crown-gold" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-semibold mb-1">Custom For Your Operations</p>
+                <p className="text-white text-sm font-semibold mb-1">Built for Your Business</p>
                 <p className="text-neutral-400 text-xs leading-relaxed">
-                  Ready to build a custom AI agent tailored to your exact operations? Let's
-                  systemize your business and give your team the ultimate advantage.
+                  Every operator is custom-built for your industry, your tools, and your team. No generic software — just a system that knows your operation inside out.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Card 4 — Randeep Dhesi */}
-          <div className="bg-neutral-800 rounded-xl px-4 py-4">
-            <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <User size={18} className="text-emerald-400" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-semibold mb-4">Call / Text Randeep For More Info</p>
-                <div className="flex flex-row w-full gap-3">
-                  <a
-                    href="tel:+16043489097"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-neutral-700 hover:border-[#b3874b] bg-neutral-700 hover:bg-[#b3874b]/10 text-sm font-medium transition-colors text-neutral-200"
-                  >
-                    📱 Call
-                  </a>
-                  <a
-                    href="sms:+16043489097"
-                    className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border border-neutral-700 hover:border-[#b3874b] bg-neutral-700 hover:bg-[#b3874b]/10 text-sm font-medium transition-colors text-neutral-200"
-                  >
-                    💬 Text
-                  </a>
-                </div>
-              </div>
+          {/* Card 4 — Contact Randeep */}
+          <div className="bg-neutral-800 rounded-xl px-4 py-5">
+            <p className="text-white text-sm font-semibold mb-0.5">Randeep Dhesi</p>
+            <p className="text-neutral-500 text-xs mb-4">AI Operator Builder · 604-348-9097</p>
+            <div className="flex gap-2.5">
+              <a
+                href="tel:+16043489097"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-neutral-700 hover:bg-crown-gold/15 border border-neutral-600 hover:border-crown-gold/40 text-neutral-200 hover:text-crown-gold text-xs font-semibold uppercase tracking-wide transition-colors"
+              >
+                <Phone size={13} />
+                Call
+              </a>
+              <a
+                href="sms:+16043489097"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-neutral-700 hover:bg-crown-gold/15 border border-neutral-600 hover:border-crown-gold/40 text-neutral-200 hover:text-crown-gold text-xs font-semibold uppercase tracking-wide transition-colors"
+              >
+                <MessageSquare size={13} />
+                Text
+              </a>
             </div>
           </div>
 
