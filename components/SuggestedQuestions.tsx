@@ -1,10 +1,10 @@
 "use client";
 
 const suggestions = [
-  "Colors for Norwegian Fluted siding?",
-  "Price on 16ft Belgian Fluted boards?",
-  "Do you carry ROCKWOOL insulation?",
-  "Which Crown locations are in Alberta?",
+  "Generate a quote for 50 sheets of 5/8\" Type X and 200 bags of R22 for Pacific Coast Builders",
+  "Check stock on Norwegian Fluted Siding in Teak across all locations",
+  "Draft an email to Jim at Pacific Coast about his pending drywall order",
+  "Pull up the account for Pacific Coast Builders",
 ];
 
 interface Props {
