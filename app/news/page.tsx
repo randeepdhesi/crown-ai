@@ -32,7 +32,7 @@ export default function NewsPage() {
               <div className="flex-1 min-w-0">
                 <p className="text-white text-sm font-semibold mb-1">Instant Document Generation</p>
                 <p className="text-neutral-400 text-xs leading-relaxed">
-                  Speak to generate quotes, proposals, and invoices on the spot. Formatted and ready to send — no typing, no templates.
+                  Speak to generate quotes, proposals, and invoices on the spot. Formatted and ready to send without any typing or templates.
                 </p>
               </div>
             </div>
@@ -47,7 +47,7 @@ export default function NewsPage() {
               <div className="flex-1 min-w-0">
                 <p className="text-white text-sm font-semibold mb-1">One System, Every Answer</p>
                 <p className="text-neutral-400 text-xs leading-relaxed">
-                  Your ERP, CRM, email, and product data — unified. Your team gets instant answers without digging through tabs or waiting on colleagues.
+                  Your ERP, CRM, email, and product data all in one place. Your team gets instant answers without digging through tabs or waiting on colleagues.
                 </p>
               </div>
             </div>
@@ -63,7 +63,7 @@ export default function NewsPage() {
               <div className="flex-1 min-w-0">
                 <p className="text-white text-sm font-semibold mb-1">Built for Your Business</p>
                 <p className="text-neutral-400 text-xs leading-relaxed">
-                  Every operator is custom-built for your industry, your tools, and your team. No generic software — just a system that knows your operation inside out.
+                  Every operator is custom-built for your industry, your tools, and your team. No generic software, just a system that knows your operation inside out.
                 </p>
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function NewsPage() {
           {/* Card 4 — Contact Randeep */}
           <div className="bg-neutral-800 rounded-xl px-4 py-5">
             <p className="text-white text-sm font-semibold mb-0.5">Randeep Dhesi</p>
-            <p className="text-neutral-500 text-xs mb-4">AI Operator Builder · 604-348-9097</p>
+            <p className="text-neutral-500 text-xs mb-4">604-348-9097</p>
             <div className="flex gap-2.5">
               <a
                 href="tel:+16043489097"
