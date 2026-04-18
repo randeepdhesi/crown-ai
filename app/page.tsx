@@ -8,7 +8,7 @@ import SuggestedQuestions from "@/components/SuggestedQuestions";
 import CrownLogo from "@/components/CrownLogo";
 
 export default function Home() {
-  const { messages, isLoading, append } = useChatContext();
+  const { messages, isLoading, append, clearChat } = useChatContext();
   const mainRef = useRef<HTMLDivElement>(null);
   const lastUserMsgRef = useRef<HTMLDivElement>(null);
   const prevLastUserMsgIdRef = useRef<string | undefined>(undefined);
@@ -35,6 +35,25 @@ export default function Home() {
       container.scrollTo({ top, behavior: "smooth" });
     });
   }, [lastUserMsgId]);
+
+  // Push a fake history entry when chat starts so back button clears chat instead of exiting.
+  // Only fires once per conversation (length === 1 = first message just arrived).
+  useEffect(() => {
+    if (messages.length === 1) {
+      window.history.pushState({ crownChat: true }, "");
+    }
+  }, [messages.length]);
+
+  // Intercept popstate (back button) while on this page and clear the chat instead.
+  // This listener is only active while the chat page is mounted, so it won't fire
+  // during Next.js navigations to/from other pages.
+  useEffect(() => {
+    function handlePopState() {
+      clearChat();
+    }
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [clearChat]);
 
   // Reset scroll when conversation is cleared
   useEffect(() => {
