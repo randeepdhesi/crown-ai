@@ -91,6 +91,21 @@ export default function NewsPage() {
             </div>
           </div>
 
+          {/* Industry section */}
+          <p className="text-crown-gold text-xs uppercase tracking-widest font-semibold mt-2">
+            Built for the Best in the Industry
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {["Building Supply", "Construction", "Distribution", "Manufacturing", "Wholesale", "Real Estate", "Professional Services", "Retail"].map((industry) => (
+              <span
+                key={industry}
+                className="text-neutral-400 text-xs bg-neutral-800 border border-neutral-700 px-3 py-1.5 rounded-full"
+              >
+                {industry}
+              </span>
+            ))}
+          </div>
+
         </div>
       </div>
     </div>
