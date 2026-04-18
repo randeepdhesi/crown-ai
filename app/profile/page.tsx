@@ -88,8 +88,8 @@ export default function ProfilePage() {
             <span className="text-white text-sm font-semibold">C</span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-white text-sm font-medium">Crown AI Demo</p>
-            <p className="text-neutral-400 text-xs">demo@crownbuildingsupplies.ca</p>
+            <p className="text-white text-sm font-medium">Crown AI Operator</p>
+            <p className="text-neutral-400 text-xs">operator@crown.ai</p>
           </div>
           <ChevronRight size={16} className="text-neutral-400 flex-shrink-0" />
         </div>
