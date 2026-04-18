@@ -11,7 +11,7 @@ export default function NewsPage() {
       <div className="max-w-2xl mx-auto w-full px-4 py-6">
 
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-white font-semibold text-lg">Your Business AI Assistant</h1>
+          <h1 className="text-white font-semibold text-lg">Your Business AI Operator</h1>
           <button
             onClick={() => router.back()}
             className="w-9 h-9 rounded-full bg-neutral-800 hover:bg-neutral-700 flex items-center justify-center transition-colors flex-shrink-0"
@@ -40,14 +40,14 @@ export default function NewsPage() {
             </div>
           </div>
 
-          {/* Card 2 — Your Ultimate Internal Assistant */}
+          {/* Card 2 — Your Ultimate Internal AI Operator */}
           <div className="bg-neutral-800 rounded-xl px-4 py-4">
             <div className="flex items-start gap-3">
               <div className="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Brain size={18} className="text-blue-400" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white text-sm font-semibold mb-1">Your Ultimate Internal Assistant</p>
+                <p className="text-white text-sm font-semibold mb-1">Your Ultimate Internal AI Operator</p>
                 <p className="text-neutral-400 text-xs leading-relaxed">
                   Connect your ERP, CRM, emails, and internal docs into one intelligent hub. It
                   knows your business inside and out, ensuring your team never hits a roadblock or

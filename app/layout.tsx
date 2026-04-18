@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Crown AI — Crown Building Supplies",
   description:
-    "Your intelligent building supplies assistant. Ask about products, pricing, specs, and more.",
+    "Your intelligent building supplies AI Operator. Ask about products, pricing, specs, and more.",
   manifest: "/manifest.json",
   icons: { icon: "/icon-192.png", apple: "/icon-192.png" },
   appleWebApp: {

@@ -63,8 +63,8 @@ export default function Home() {
                 Welcome to Crown AI
               </h2>
               <p className="text-sm text-neutral-400 text-center max-w-sm mt-1 mb-3">
-                Your voice-powered AI Operator to pull specs,<br />
-                check inventory and generate quotes.
+                Your voice-powered AI Operator. Pull specs,<br />
+                check inventory, and generate quotes.
               </p>
             </div>
             <div className="mt-4 w-full">
