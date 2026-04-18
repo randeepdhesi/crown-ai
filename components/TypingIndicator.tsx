@@ -9,9 +9,17 @@ export default function TypingIndicator() {
           <img src="/icon-192.png" alt="Crown AI" width={28} height={28} className="object-contain" />
         </div>
       </div>
-      <div className="flex items-center gap-2 text-neutral-400 text-base font-medium">
-        <span>Thinking</span>
-        <span className="animate-pulse">...</span>
+      <div className="flex items-center gap-2 border-l-[3px] border-crown-gold rounded-tl-md bg-neutral-800/20 px-4 py-3 rounded-2xl rounded-tl-md">
+        <span className="text-sm text-neutral-400">Crown AI is thinking</span>
+        <span className="flex gap-[3px] items-center">
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              className="typing-dot w-1 h-1 rounded-full bg-crown-gold/60 inline-block"
+              style={{ animationDelay: `${i * 0.2}s` }}
+            />
+          ))}
+        </span>
       </div>
     </div>
   );

@@ -122,7 +122,7 @@ export default function ChatMessage({ message, isStreaming = false, scrollRef, o
           className={`rounded-2xl px-5 py-4 ${
             isUser
               ? "bg-neutral-800 text-white rounded-tr-md"
-              : "bg-neutral-900 text-neutral-100 shadow-sm border-l-[3px] border-crown-gold rounded-tl-md"
+              : "bg-neutral-800/20 text-neutral-100 shadow-sm border-l-[3px] border-crown-gold rounded-tl-md"
           }`}
         >
           {isUser ? (
@@ -145,6 +145,9 @@ export default function ChatMessage({ message, isStreaming = false, scrollRef, o
                   >
                     {renderWithSwatches(smoothContent)}
                   </ReactMarkdown>
+                  {isStreaming && (
+                    <span className="inline-block w-[2px] h-[14px] bg-crown-gold/70 ml-0.5 align-middle animate-pulse" />
+                  )}
                 </div>
               )}
               {message.toolInvocations?.map((inv) => (
@@ -163,9 +166,14 @@ export default function ChatMessage({ message, isStreaming = false, scrollRef, o
           )}
         </div>
 
-        {/* Action buttons */}
+        {/* Action row — timestamp + buttons */}
         {showActions && (
           <div className="flex items-center gap-2 px-1">
+            {message.createdAt && (
+              <span className="text-[10px] text-neutral-600 mr-1">
+                {new Date(message.createdAt).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true })}
+              </span>
+            )}
             <button
               onClick={handleCopy}
               className="flex items-center gap-1.5 text-xs text-neutral-600 hover:text-neutral-400 transition-colors"
@@ -184,6 +192,13 @@ export default function ChatMessage({ message, isStreaming = false, scrollRef, o
               </button>
             )}
           </div>
+        )}
+
+        {/* User message timestamp */}
+        {isUser && message.createdAt && (
+          <p className="text-[10px] text-neutral-600 text-right px-1 mt-0.5">
+            {new Date(message.createdAt).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true })}
+          </p>
         )}
       </div>
     </div>

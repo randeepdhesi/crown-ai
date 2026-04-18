@@ -55,7 +55,10 @@ export default function Home() {
         {!hasMessages ? (
           <div className="flex flex-col items-center justify-center h-full">
             <div className="flex flex-col items-center gap-2">
-              <CrownLogo size={200} className="w-[140px] sm:w-[200px] h-auto" />
+              <div className="relative flex items-center justify-center">
+                <div className="absolute rounded-full pointer-events-none" style={{ width: "220px", height: "220px", background: "radial-gradient(ellipse at center, rgba(179,135,75,0.18) 0%, rgba(179,135,75,0.07) 45%, transparent 70%)" }} />
+                <CrownLogo size={200} className="relative w-[140px] sm:w-[200px] h-auto" />
+              </div>
               <p className="text-[10px] font-semibold tracking-[0.18em] uppercase text-crown-gold">
                 Crown Building Supplies
               </p>

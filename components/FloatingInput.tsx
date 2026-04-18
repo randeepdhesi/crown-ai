@@ -65,7 +65,7 @@ export function FloatingInput() {
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 w-full max-w-2xl px-4 z-40">
-      <div className="bg-neutral-800/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl">
+      <div className="bg-neutral-800/80 backdrop-blur-md border border-white/10 focus-within:border-crown-gold/40 focus-within:shadow-[0_0_0_2px_rgba(179,135,75,0.15)] rounded-2xl shadow-2xl transition-all duration-200">
         <form ref={formRef} onSubmit={handleSubmit}>
           <div className="flex flex-col px-4 pt-3 pb-2 gap-2">
 

@@ -96,12 +96,22 @@ export default function NewsPage() {
             Built for the Best in the Industry
           </p>
           <div className="flex flex-wrap gap-2">
-            {["Building Supply", "Construction", "Distribution", "Manufacturing", "Wholesale", "Real Estate", "Professional Services", "Trucking & Logistics"].map((industry) => (
+            {[
+              { label: "Building Supply", emoji: "🏗️" },
+              { label: "Construction", emoji: "🔨" },
+              { label: "Distribution", emoji: "📦" },
+              { label: "Manufacturing", emoji: "⚙️" },
+              { label: "Wholesale", emoji: "🏭" },
+              { label: "Real Estate", emoji: "🏢" },
+              { label: "Professional Services", emoji: "💼" },
+              { label: "Trucking & Logistics", emoji: "🚛" },
+            ].map(({ label, emoji }) => (
               <span
-                key={industry}
-                className="text-neutral-400 text-xs bg-neutral-800 border border-neutral-700 px-3 py-1.5 rounded-full"
+                key={label}
+                className="inline-flex items-center gap-1.5 text-crown-gold text-xs border border-crown-gold/30 px-3 py-1.5 rounded-full"
               >
-                {industry}
+                <span>{emoji}</span>
+                {label}
               </span>
             ))}
           </div>
