@@ -4,7 +4,7 @@ import type { RefObject } from "react";
 import type { Message, ToolInvocation } from "ai";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-import { Package } from "lucide-react";
+import { Package, Phone } from "lucide-react";
 import { useSmoothStream } from "@/hooks/useSmoothStream";
 
 function renderWithSwatches(content: string): string {
@@ -80,6 +80,7 @@ interface ChatMessageProps {
 export default function ChatMessage({ message, isStreaming = false, scrollRef }: ChatMessageProps) {
   const isUser = message.role === "user";
   const smoothContent = useSmoothStream(message.content, !isStreaming);
+  const showCallButton = !isUser && !isStreaming && message.content.includes("604-348-9097");
 
   if (!isUser && !message.content) return null;
 
@@ -137,6 +138,15 @@ export default function ChatMessage({ message, isStreaming = false, scrollRef }:
             {message.toolInvocations?.map((inv) => (
               <ToolResult key={inv.toolCallId} invocation={inv} />
             ))}
+            {showCallButton && (
+              <a
+                href="tel:+16043489097"
+                className="inline-flex items-center gap-2 mt-1 px-4 py-2.5 bg-crown-gold text-black font-semibold text-sm rounded-lg hover:opacity-90 transition-opacity"
+              >
+                <Phone size={15} />
+                Call Randeep
+              </a>
+            )}
           </div>
         )}
       </div>
