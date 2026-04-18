@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ChevronLeft, Layers, Thermometer } from "lucide-react";
+import { ChevronLeft, Layers, Thermometer, Upload } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { CATALOG, type Product, type StockStatus } from "@/lib/catalog-data";
@@ -150,18 +150,19 @@ export default function CatalogPage() {
             <h1 className="text-white font-semibold text-lg">Catalog</h1>
           </div>
 
-          {/* Manage / upload */}
+          {/* Top-right upload button */}
           <div>
             {uploadState === "idle" && (
               <button
                 onClick={() => inputRef.current?.click()}
-                className="text-xs text-neutral-400 hover:text-neutral-300 transition-colors"
+                className="flex items-center gap-1.5 text-crown-gold border border-crown-gold/40 hover:bg-crown-gold/10 transition-colors text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full"
               >
-                + Add products
+                <Upload size={11} />
+                Add Products
               </button>
             )}
             {uploadState === "uploading" && (
-              <div className="flex gap-1 items-center">
+              <div className="flex gap-1 items-center px-3 py-1.5">
                 {[0, 1, 2].map((i) => (
                   <span
                     key={i}
@@ -172,7 +173,7 @@ export default function CatalogPage() {
               </div>
             )}
             {uploadState === "done" && (
-              <span className="text-xs text-emerald-400">{fileName} uploaded</span>
+              <span className="text-xs text-emerald-400 font-medium">{fileName} uploaded</span>
             )}
             <input
               ref={inputRef}
@@ -207,6 +208,18 @@ export default function CatalogPage() {
               </div>
             </div>
           ))}
+
+          {/* Bottom upload card */}
+          <button
+            onClick={() => inputRef.current?.click()}
+            className="w-full border border-dashed border-crown-gold/30 hover:border-crown-gold/60 hover:bg-crown-gold/5 rounded-xl py-8 flex flex-col items-center gap-2 transition-colors group"
+          >
+            <div className="w-10 h-10 rounded-full bg-crown-gold/10 group-hover:bg-crown-gold/15 flex items-center justify-center transition-colors">
+              <Upload size={18} className="text-crown-gold" />
+            </div>
+            <p className="text-crown-gold text-sm font-semibold uppercase tracking-widest">Add Products</p>
+            <p className="text-neutral-500 text-xs">CSV, Excel or PDF</p>
+          </button>
         </div>
 
       </div>
