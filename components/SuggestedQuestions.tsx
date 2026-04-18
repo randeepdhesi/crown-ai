@@ -4,7 +4,7 @@ const suggestions = [
   "Which Crown locations are in Alberta?",
   "Check stock on Norwegian Fluted Siding in Teak across all locations",
   "Draft an email to Jim at Pacific Coast about his pending drywall order",
-  "Pull up the account for Pacific Coast Builders",
+  "Colors for Norwegian Fluted siding?",
 ];
 
 interface Props {
